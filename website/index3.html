@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruby & Riska Wedding</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+            background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 20%, #e8e8e8 40%, #f5f5f5 60%, #ffffff 80%, #f0f0f0 100%);
+            background-attachment: fixed;
+            background-size: 100% 300vh;
+            color: #000;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Cover dengan animasi */
+        .cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #000 0%, #2d2d2d 50%, #000 100%);
+            background-size: 200% 200%;
+            animation: gradientMove 8s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: all 1s ease;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: pulse 3s ease infinite;
+        }
+
+        .cover.hide {
+            opacity: 0;
+            transform: scale(1.5);
+            pointer-events: none;
+        }
+
+        .cover-content {
+            text-align: center;
+            color: #fff;
+            z-index: 2;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .cover-content h1 {
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: 15px;
+            margin-bottom: 2rem;
+            animation: letterSpacing 2s ease infinite alternate;
+        }
+
+        .cover-content p {
+            font-size: 1.3rem;
+            letter-spacing: 5px;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            animation: fadeInOut 2s ease infinite;
+        }
+
+        .open-btn {
+            padding: 18px 60px;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .open-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: #fff;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .open-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .open-btn:hover {
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .open-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Floating hearts */
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 20px;
+            animation: floatUp 8s linear infinite;
+        }
+
+        /* Main Content */
+        .main-content {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .main-content.show {
+            opacity: 1;
+        }
+
+        /* Hero dengan animasi parallax */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 50%;
+            animation: rotate 30s linear infinite reverse;
+        }
+
+        .hero h1 {
+            font-size: 7rem;
+            font-weight: 300;
+            margin: 1rem 0;
+            z-index: 2;
+            animation: slideInLeft 1s ease;
+        }
+
+        .hero h1:last-of-type {
+            animation: slideInRight 1s ease;
+        }
+
+        .hero .divider {
+            font-size: 3rem;
+            margin: 2rem 0;
+            opacity: 0.5;
+            z-index: 2;
+            animation: scaleIn 1.5s ease;
+        }
+
+        .hero .date {
+            font-size: 1.8rem;
+            letter-spacing: 6px;
+            margin-top: 3rem;
+            border-top: 2px solid #000;
+            border-bottom: 2px solid #000;
+            padding: 1.5rem 3rem;
+            z-index: 2;
+            animation: fadeInUp 1.5s ease;
+            background: rgba(255,255,255,0.9);
+        }
+
+        /* Section dengan scroll animation */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: 6px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: #000;
+            animation: expandWidth 1s ease;
+        }
+
+        /* Quote dengan animasi typing */
+        .quote-section {
+            text-align: center;
+            font-size: 1.4rem;
+            font-style: italic;
+            opacity: 0.8;
+            padding: 4rem 2rem;
+            background: transparent;
+        }
+
+        /* Couple dengan hover effects */
+        .couple-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin: 4rem 0;
+        }
+
+        .bride, .groom {
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .bride:hover, .groom:hover {
+            transform: translateY(-20px);
+        }
+
+        .photo-circle {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            border: 4px solid #000;
+            position: relative;
+            transition: all 0.5s ease;
+            animation: floatUpDown 3s ease infinite;
+        }
+
+        .groom .photo-circle {
+            animation-delay: 0.5s;
+        }
+
+        .photo-circle::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px solid rgba(0,0,0,0.2);
+            border-radius: 50%;
+            animation: rotateCircle 4s linear infinite;
+        }
+
+        .bride:hover .photo-circle,
+        .groom:hover .photo-circle {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .couple-container h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .couple-container p {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            line-height: 1.8;
+        }
+
+        .couple-divider {
+            font-size: 4rem;
+            opacity: 0.3;
+            animation: rotate 4s ease infinite;
+        }
+
+        /* Countdown dengan animasi flip */
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .countdown-box {
+            padding: 3rem 2rem;
+            background: #000;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .countdown-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .countdown-box:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .countdown-box:hover::before {
+            left: 100%;
+        }
+
+        .countdown-number {
+            font-size: 4rem;
+            font-weight: 300;
+            display: block;
+            margin-bottom: 1rem;
+            animation: countPulse 1s ease infinite;
+        }
+
+        .countdown-label {
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+        }
+
+        /* Event boxes dengan animasi */
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .event-box {
+            text-align: center;
+            padding: 4rem 3rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 3px solid #000;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .event-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+            z-index: 0;
+        }
+
+        .event-box:hover::before {
+            transform: scaleX(1);
+        }
+
+        .event-box:hover {
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .event-box > * {
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .event-box .icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: bounce 2s ease infinite;
+        }
+
+        .event-box h3 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            letter-spacing: 4px;
+        }
+
+        .event-box .time {
+            font-size: 1.3rem;
+            margin: 0.8rem 0;
+        }
+
+        /* Location dengan animasi map */
+        .location-box {
+            text-align: center;
+            padding: 4rem 3rem;
+            background: rgba(248, 248, 248, 0.8);
+            backdrop-filter: blur(10px);
+            border: 3px solid #000;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .location-box::after {
+            content: '📍';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .location-box:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .location-box h3 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .location-box p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .map-btn {
+            display: inline-block;
+            padding: 18px 50px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 4px;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .map-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: #fff;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+            border-radius: 50%;
+        }
+
+        .map-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .map-btn:hover {
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        .map-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .location-box:hover .map-btn {
+            background: #fff;
+            color: #000;
+        }
+
+        /* RSVP Form dengan animasi */
+        .rsvp-form {
+            max-width: 600px;
+            margin: 4rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: 3px solid #000;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            font-size: 1.1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: #f8f8f8;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.5rem;
+            background: #000;
+            color: #fff;
+            border: none;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: #fff;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .submit-btn:hover {
+            color: #000;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: #000;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '♥';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 3s ease infinite;
+        }
+
+        .footer p {
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            margin: 1rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Animations */
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes letterSpacing {
+            0% { letter-spacing: 15px; }
+            100% { letter-spacing: 20px; }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 0.6; }
+        }
+
+        @keyframes floatUp {
+            0% {
+                bottom: -50px;
+                opacity: 0;
+                transform: translateX(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                bottom: 100%;
+                opacity: 0;
+                transform: translateX(100px) rotate(360deg);
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+            to {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 100px; }
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes rotateCircle {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes countPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Parallax scroll animation */
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0,0,0,0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Floating elements on scroll */
+        .float-element {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .float-element-1 {
+            top: 20%;
+            left: 10%;
+            font-size: 10rem;
+            animation: floatSlow 20s ease-in-out infinite;
+        }
+
+        .float-element-2 {
+            top: 60%;
+            right: 10%;
+            font-size: 8rem;
+            animation: floatSlow 25s ease-in-out infinite reverse;
+        }
+
+        .float-element-3 {
+            bottom: 20%;
+            left: 15%;
+            font-size: 12rem;
+            animation: floatSlow 30s ease-in-out infinite;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-50px) rotate(10deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cover-content h1 { font-size: 3rem; letter-spacing: 10px; }
+            .hero h1 { font-size: 3.5rem; }
+            .couple-container { grid-template-columns: 1fr; gap: 3rem; }
+            .couple-divider { display: none; }
+            .event-grid { grid-template-columns: 1fr; }
+            .countdown { grid-template-columns: repeat(2, 1fr); }
+            .section-title { font-size: 2.5rem; }
+            .photo-circle { width: 180px; height: 180px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cover -->
+    <div class="cover" id="cover">
+        <div class="hearts" id="hearts"></div>
+        <div class="cover-content">
+            <h1>R & R</h1>
+            <p>THE WEDDING OF</p>
+            <button class="open-btn" onclick="openInvitation()"><span>BUKA UNDANGAN</span></button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Parallax Background -->
+        <div class="parallax-bg" id="parallaxBg"></div>
+        
+        <!-- Floating Elements -->
+        <div class="float-element float-element-1">♥</div>
+        <div class="float-element float-element-2">♡</div>
+        <div class="float-element float-element-3">❤</div>
+        
+        <!-- Hero -->
+        <section class="hero">
+            <h1>Ruby</h1>
+            <div class="divider">&</div>
+            <h1>Riska</h1>
+            <p class="date">15 . 12 . 2025</p>
+        </section>
+
+        <!-- Quote -->
+        <section class="quote-section">
+            <p>"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya"</p>
+            <p style="margin-top: 1.5rem; font-size: 1.1rem; font-style: normal;">(QS. Ar-Rum: 21)</p>
+        </section>
+
+        <!-- Couple -->
+        <section class="section">
+            <h2 class="section-title">MEMPELAI</h2>
+            <div class="couple-container">
+                <div class="groom">
+                    <div class="photo-circle">👨</div>
+                    <h2>Ruby</h2>
+                    <p>Putra dari</p>
+                    <p><strong>Bapak [Nama Ayah]</strong></p>
+                    <p>&</p>
+                    <p><strong>Ibu [Nama Ibu]</strong></p>
+                </div>
+                <div class="couple-divider">&</div>
+                <div class="bride">
+                    <div class="photo-circle">👰</div>
+                    <h2>Riska</h2>
+                    <p>Putri dari</p>
+                    <p><strong>Bapak [Nama Ayah]</strong></p>
+                    <p>&</p>
+                    <p><strong>Ibu [Nama Ibu]</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Countdown -->
+        <section class="section">
+            <h2 class="section-title">MENUJU HARI BAHAGIA</h2>
+            <div class="countdown">
+                <div class="countdown-box">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">HARI</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">JAM</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">MENIT</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">DETIK</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event -->
+        <section class="section">
+            <h2 class="section-title">ACARA</h2>
+            <div class="event-grid">
+                <div class="event-box">
+                    <div class="icon">💒</div>
+                    <h3>AKAD NIKAH</h3>
+                    <p class="time"><strong>Sabtu</strong></p>
+                    <p class="time">15 Desember 2025</p>
+                    <p class="time">08.00 - 10.00 WIB</p>
+                </div>
+                <div class="event-box">
+                    <div class="icon">🎉</div>
+                    <h3>RESEPSI</h3>
+                    <p class="time"><strong>Sabtu</strong></p>
+                    <p class="time">15 Desember 2025</p>
+                    <p class="time">11.00 - 15.00 WIB</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location -->
+        <section class="section">
+            <h2 class="section-title">LOKASI ACARA</h2>
+            <div class="location-box">
+                <h3>Gedung Pernikahan</h3>
+                <p><strong>Jl. [Nama Jalan Lengkap]</strong></p>
+                <p>Tangerang Selatan, Banten</p>
+                <a href="https://maps.google.com" target="_blank" class="map-btn"><span>BUKA GOOGLE MAPS</span></a>
+            </div>
+        </section>
+
+        <!-- RSVP -->
+        <section class="section">
+            <h2 class="section-title">KONFIRMASI KEHADIRAN</h2>
+            <form class="rsvp-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <input type="text" placeholder="Nama Lengkap" required>
+                </div>
+                <div class="form-group">
+                    <select required>
+                        <option value="">Pilih Kehadiran</option>
+                        <option value="hadir">Hadir</option>
+                        <option value="tidak">Tidak Hadir</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="number" placeholder="Jumlah Tamu" min="1" max="5" required>
+                </div>
+                <div class="form-group">
+                    <textarea rows="5" placeholder="Ucapan & Doa untuk Kami"></textarea>
+                </div>
+                <button type="submit" class="submit-btn"><span>KIRIM KONFIRMASI</span></button>
+            </form>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>TERIMA KASIH</p>
+            <p style="margin: 2.5rem 0; font-size: 2.5rem; font-weight: 300;">Ruby & Riska</p>
+            <p style="font-size: 1.1rem; opacity: 0.8;">Tangerang Selatan, 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const hearts = ['♥', '♡', '❤'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 8000);
+            }, 500);
+        }
+
+        function openInvitation() {
+            document.getElementById('cover').classList.add('hide');
+            document.getElementById('mainContent').classList.add('show');
+            startCountdown();
+            observeSections();
+        }
+
+        function startCountdown() {
+            const weddingDate = new Date('2025-12-15T08:00:00').getTime();
+            
+            setInterval(() => {
+                const now = new Date().getTime();
+                const distance = weddingDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }, 1000);
+        }
+
+        function observeSections() {
+            const sections = document.querySelectorAll('.section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            sections.forEach(section => observer.observe(section));
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('Terima kasih atas konfirmasi kehadiran Anda! 💝');
+            e.target.reset();
+        }
+
+        // Initialize hearts animation
+        createHearts();
+
+        // Parallax mouse effect
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            document.documentElement.style.setProperty('--mouse-x', x + '%');
+            document.documentElement.style.setProperty('--mouse-y', y + '%');
+        });
+
+        // Scroll parallax effect
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const parallaxBg = document.getElementById('parallaxBg');
+                    const floatElements = document.querySelectorAll('.float-element');
+                    
+                    if (parallaxBg) {
+                        parallaxBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+                    }
+                    
+                    floatElements.forEach((element, index) => {
+                        const speed = 0.3 + (index * 0.1);
+                        element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
+                    });
+                    
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    </script>
+</body>
+</html>

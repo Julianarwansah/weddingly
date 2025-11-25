@@ -6,6 +6,58 @@
     <title>Desain - Weddingly - Koleksi Template Undangan Pernikahan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Design Image Styles */
+        .design-image {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #edf2f7, #cbd5e0);
+        }
+
+        .design-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .design-card:hover .design-image img {
+            transform: scale(1.05);
+        }
+
+        /* Responsive adjustments for images */
+        @media (max-width: 1024px) {
+            .design-image {
+                height: 240px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .design-image {
+                height: 220px;
+            }
+            
+            .design-gallery {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .design-image {
+                height: 200px;
+            }
+            
+            .design-gallery {
+                padding: 0 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -92,45 +144,64 @@
                 <h2 class="section-title">Koleksi Template</h2>
                 <p class="section-subtitle">Pilih dari berbagai kategori desain yang sesuai dengan tema pernikahan Anda</p>
             </div>
+            
             <div class="design-gallery">
                 <div class="design-card">
-                    <div class="design-image">💫</div>
+                    <div class="design-image">
+                        <img src="assets/images/wedding1.png" alt="Luminous Royal Wedding Design">
+                    </div>
+                    <div class="design-content">
+                        <div class="design-category">Golden Noir Elegance</div>
+                        <div class="design-title">Luminous Royal Wedding</div>
+                        <p class="design-description">
+                            Desain undangan premium dengan nuansa hitam–emas, efek cahaya lembut,
+                            dan partikel mewah yang memberikan kesan elegan, futuristik, serta berkelas.
+                            Cocok untuk konsep pernikahan modern berestetika luxury.
+                        </p>
+                        <a href="website/index1.html" class="design-button">Lihat Demo</a>
+                    </div>
+                </div>
+
+                <div class="design-card">
+                    <div class="design-image">
+                        <img src="assets/images/wedding2.png" alt="Golden Embrace Design">
+                    </div>
+                    <div class="design-content">
+                        <div class="design-category">Luxury Classic</div>
+                        <div class="design-title">Golden Embrace</div>
+                        <p class="design-description">Desain mewah dengan nuansa emas elegan, animasi partikel berkilau, dan sentuhan klasik yang timeless untuk pernikahan impian Anda.</p>
+                        <a href="website/index2.html" class="design-button">Lihat Demo</a>
+                    </div>
+                </div>
+
+                <div class="design-card">
+                    <div class="design-image">
+                        <img src="assets/images/wedding3.png" alt="Monochrome Elegance Design">
+                    </div>
                     <div class="design-content">
                         <div class="design-category">Modern Minimalist</div>
-                        <div class="design-title">Ethereal Bloom</div>
-                        <p class="design-description">Desain minimalis dengan gradien pastel dan elemen geometris yang elegan.</p>
-                        <a href="#" class="design-button">Lihat Demo</a>
+                        <div class="design-title">Monochrome Elegance</div>
+                        <p class="design-description">Desain hitam-putih yang sophisticated dengan animasi scroll halus, typography elegan, dan efek parallax yang memukau.</p>
+                        <a href="website/index3.html" class="design-button">Lihat Demo</a>
                     </div>
                 </div>
+
                 <div class="design-card">
-                    <div class="design-image">🌹</div>
+                    <div class="design-image">
+                        <img src="assets/images/wedding4.png" alt="Sundanese Heritage Design">
+                    </div>
                     <div class="design-content">
-                        <div class="design-category">Classic Elegant</div>
-                        <div class="design-title">Royal Garden</div>
-                        <p class="design-description">Inspirasi taman kerajaan dengan ornamen klasik dan warna emas yang mewah.</p>
-                        <a href="#" class="design-button">Lihat Demo</a>
+                        <div class="design-category">Traditional Sundanese</div>
+                        <div class="design-title">Sundanese Heritage</div>
+                        <p class="design-description">Desain pernikahan adat Sunda dengan ornamen wayang, aksara Sunda, dan warna tradisional yang kaya makna budaya.</p>
+                        <a href="website/index4.html" class="design-button">Lihat Demo</a>
                     </div>
                 </div>
+
                 <div class="design-card">
-                    <div class="design-image">🌊</div>
-                    <div class="design-content">
-                        <div class="design-category">Nature Inspired</div>
-                        <div class="design-title">Ocean Breeze</div>
-                        <p class="design-description">Konsep pantai dengan nuansa biru laut dan elemen alam yang menenangkan.</p>
-                        <a href="#" class="design-button">Lihat Demo</a>
+                    <div class="design-image">
+                        <img src="assets/images/wedding5.png" alt="Boho Dream Design">
                     </div>
-                </div>
-                <div class="design-card">
-                    <div class="design-image">🌸</div>
-                    <div class="design-content">
-                        <div class="design-category">Romantic</div>
-                        <div class="design-title">Blossom Love</div>
-                        <p class="design-description">Romantis dengan bunga sakura dan nuansa pink yang lembut dan mempesona.</p>
-                        <a href="#" class="design-button">Lihat Demo</a>
-                    </div>
-                </div>
-                <div class="design-card">
-                    <div class="design-image">🎋</div>
                     <div class="design-content">
                         <div class="design-category">Bohemian</div>
                         <div class="design-title">Boho Dream</div>
@@ -138,8 +209,11 @@
                         <a href="#" class="design-button">Lihat Demo</a>
                     </div>
                 </div>
+
                 <div class="design-card">
-                    <div class="design-image">✨</div>
+                    <div class="design-image">
+                        <img src="assets/images/wedding6.png" alt="Golden Luxury Design">
+                    </div>
                     <div class="design-content">
                         <div class="design-category">Luxury</div>
                         <div class="design-title">Golden Luxury</div>

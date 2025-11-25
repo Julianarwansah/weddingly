@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upacara Nikah - Adat Sunda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            overflow-x: hidden;
+            background: #f8f5f0;
+        }
+
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Batik Pattern Background */
+        .batik-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(139, 69, 19, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(139, 69, 19, 0.03) 0%, transparent 50%);
+            background-size: 100px 100px;
+        }
+
+        /* Traditional Indonesian Colors */
+        .bg-maroon {
+            background: linear-gradient(135deg, #7c2d12 0%, #991b1b 100%);
+        }
+
+        .bg-gold {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .bg-brown {
+            background: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+        }
+
+        /* Wayang Shadow Effect */
+        .wayang-shadow {
+            filter: drop-shadow(0 0 20px rgba(139, 69, 19, 0.3));
+        }
+
+        /* Border Ornament */
+        .border-ornament {
+            border: 3px solid;
+            border-image: repeating-linear-gradient(
+                45deg,
+                #92400e,
+                #92400e 10px,
+                #78350f 10px,
+                #78350f 20px
+            ) 1;
+        }
+
+        /* Traditional Frame */
+        .traditional-frame {
+            border: 4px solid #92400e;
+            box-shadow: 
+                inset 0 0 0 8px #f8f5f0,
+                inset 0 0 0 12px #92400e,
+                0 0 30px rgba(139, 69, 19, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(217, 119, 6, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(217, 119, 6, 0.8), 0 0 30px rgba(217, 119, 6, 0.5); }
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animate-slideInLeft {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .animate-slideInRight {
+            animation: slideInRight 1s ease-out forwards;
+        }
+
+        .animate-scaleIn {
+            animation: scaleIn 0.8s ease-out forwards;
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .animate-glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .animate-spin-slow {
+            animation: spin-slow 30s linear infinite;
+        }
+
+        /* Decorative Elements */
+        .ornament {
+            position: absolute;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        /* Traditional Pattern Border */
+        .pattern-border {
+            background: 
+                linear-gradient(90deg, #92400e 0%, transparent 0%) top/20px 3px repeat-x,
+                linear-gradient(90deg, #92400e 0%, transparent 0%) bottom/20px 3px repeat-x,
+                linear-gradient(0deg, #92400e 0%, transparent 0%) left/3px 20px repeat-y,
+                linear-gradient(0deg, #92400e 0%, transparent 0%) right/3px 20px repeat-y;
+        }
+
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Music Button */
+        .music-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #92400e 0%, #78350f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f8f5f0;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(139, 69, 19, 0.5);
+            border: 3px solid #d97706;
+            transition: transform 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .music-btn.playing {
+            animation: float 2s ease-in-out infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f8f5f0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #92400e;
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #78350f;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Gunungan Wayang SVG */
+        .gunungan {
+            width: 150px;
+            height: 150px;
+            fill: #92400e;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="batik-pattern">
+    
+    <!-- Opening Overlay -->
+    <div id="openingOverlay" class="overlay">
+        <div class="text-center animate-scaleIn">
+            <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-12 shadow-2xl max-w-md mx-4 traditional-frame">
+                <!-- Ornament Top -->
+                <svg class="w-24 h-24 mx-auto mb-4 wayang-shadow" viewBox="0 0 100 100" fill="#92400e">
+                    <path d="M50,10 L60,40 L90,40 L65,60 L75,90 L50,70 L25,90 L35,60 L10,40 L40,40 Z"/>
+                </svg>
+                
+                <h2 class="font-cinzel text-3xl text-amber-900 mb-2">Wilujeng Sumping</h2>
+                <p class="text-amber-800 mb-1 text-lg">ᮃᮔ᮪ᮏᮥᮔ᮪</p>
+                <p class="text-amber-700 mb-6">Kepada Yth.<br>Bapak/Ibu/Saudara/i</p>
+                <div class="h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mb-6"></div>
+                <button onclick="openInvitation()" class="bg-brown text-amber-50 px-10 py-3 rounded-full font-cinzel font-semibold hover:shadow-lg transform hover:scale-105 transition duration-300 border-2 border-amber-700">
+                    <i class="fas fa-envelope-open-text mr-2"></i>Buka Surat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Button -->
+    <div id="musicBtn" class="music-btn hidden" onclick="toggleMusic()">
+        <i id="musicIcon" class="fas fa-music text-2xl"></i>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-amber-900 via-orange-900 to-amber-900 overflow-hidden">
+        <!-- Decorative Wayang Shadows -->
+        <div class="absolute top-10 left-10 animate-float opacity-10">
+            <svg class="gunungan" viewBox="0 0 100 120">
+                <path d="M50,5 L90,100 L70,100 L70,110 L30,110 L30,100 L10,100 Z" fill="#f8f5f0"/>
+                <circle cx="50" cy="50" r="8" fill="#f8f5f0"/>
+            </svg>
+        </div>
+        <div class="absolute bottom-10 right-10 animate-float opacity-10" style="animation-delay: 1s;">
+            <svg class="gunungan" viewBox="0 0 100 120">
+                <path d="M50,5 L90,100 L70,100 L70,110 L30,110 L30,100 L10,100 Z" fill="#f8f5f0"/>
+            </svg>
+        </div>
+
+        <!-- Traditional Border Pattern -->
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-amber-600 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-amber-600 to-transparent"></div>
+
+        <div class="text-center z-10 px-4">
+            <div class="animate-fadeIn">
+                <!-- Traditional Ornament -->
+                <div class="mb-6">
+                    <svg class="w-32 h-32 mx-auto wayang-shadow animate-float" viewBox="0 0 100 100" fill="#f59e0b">
+                        <path d="M50,10 L55,45 L90,45 L62,65 L72,95 L50,75 L28,95 L38,65 L10,45 L45,45 Z"/>
+                        <circle cx="50" cy="50" r="15" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                    </svg>
+                </div>
+
+                <p class="text-amber-300 text-xl mb-2 font-cinzel tracking-widest">UPACARA MANTU</p>
+                <p class="text-amber-200 mb-6">ᮅᮕᮎᮛ ᮙᮔ᮪ᮒᮥ</p>
+                
+                <div class="my-8">
+                    <div class="h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent mb-6"></div>
+                    <h1 class="font-playfair text-6xl md:text-8xl text-amber-100 mb-4 animate-glow">
+                        Dede & Neng
+                    </h1>
+                    <div class="h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent mt-6"></div>
+                </div>
+
+                <div class="text-amber-200 text-lg mb-8 space-y-2">
+                    <p class="flex items-center justify-center gap-2">
+                        <i class="far fa-calendar-alt"></i>
+                        <span class="font-cinzel">Saptu, 15 Désémber 2024</span>
+                    </p>
+                    <p class="flex items-center justify-center gap-2">
+                        <i class="far fa-clock"></i>
+                        <span class="font-cinzel">Tabuh 08.00 WIB</span>
+                    </p>
+                </div>
+
+                <div class="animate-slideInRight mt-8">
+                    <a href="#countdown" class="inline-block bg-amber-100 text-amber-900 px-10 py-4 rounded-full font-cinzel font-semibold hover:shadow-xl transform hover:scale-105 transition duration-300 border-3 border-amber-600">
+                        <i class="fas fa-scroll mr-2"></i>Tingali Lengkep
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section - Sundanese Style -->
+    <section class="py-20 bg-gradient-to-b from-amber-50 to-orange-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center reveal">
+                <!-- Traditional Ornament Border -->
+                <div class="traditional-frame bg-white p-10 rounded-lg">
+                    <svg class="w-16 h-16 mx-auto mb-6" viewBox="0 0 100 100" fill="#92400e">
+                        <path d="M50,20 L60,45 L85,50 L60,55 L50,80 L40,55 L15,50 L40,45 Z"/>
+                    </svg>
+                    
+                    <p class="font-playfair text-2xl md:text-3xl text-amber-900 italic mb-6 leading-relaxed">
+                        "Tur diantawisna tanda-tanda kakawasaan-Na, nyaéta Anjeunna nyiptakeun pasangan-pasangan pikeun anjeun tina jinis anjeun nyalira, supados anjeun katéngtréman jeung katenterem, sareng Anjeunna ngajantenkeun diantara anjeun rasa cinta sareng sayang."
+                    </p>
+                    <div class="h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent my-6"></div>
+                    <p class="text-amber-700 font-cinzel font-semibold">QS. Ar-Rum: 21</p>
+                    
+                    <svg class="w-16 h-16 mx-auto mt-6" viewBox="0 0 100 100" fill="#92400e">
+                        <path d="M50,80 L40,55 L15,50 L40,45 L50,20 L60,45 L85,50 L60,55 Z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bride & Groom Section - Sundanese -->
+    <section class="py-20 bg-maroon relative overflow-hidden">
+        <!-- Batik Pattern Overlay -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="batik-pattern w-full h-full"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <svg class="w-20 h-20 mx-auto mb-4" viewBox="0 0 100 100" fill="#f59e0b">
+                    <path d="M50,10 L40,40 L10,40 L35,60 L25,90 L50,70 L75,90 L65,60 L90,40 L60,40 Z"/>
+                </svg>
+                <h2 class="font-cinzel text-5xl text-amber-100 mb-2">Pangantén</h2>
+                <p class="text-amber-300">ᮕᮍᮔ᮪ᮒᮦᮔ᮪</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-16 max-w-6xl mx-auto">
+                <!-- Groom -->
+                <div class="text-center reveal">
+                    <div class="mb-8">
+                        <div class="relative inline-block">
+                            <!-- Traditional Frame -->
+                            <div class="absolute -inset-4 border-4 border-amber-600 rounded-full"></div>
+                            <div class="absolute -inset-6 border-2 border-amber-700 rounded-full opacity-50"></div>
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" 
+                                 alt="Groom" 
+                                 class="relative w-72 h-72 rounded-full object-cover shadow-2xl mx-auto border-8 border-amber-100 transform hover:scale-105 transition duration-500">
+                        </div>
+                    </div>
+                    
+                    <div class="bg-amber-50 rounded-3xl p-8 traditional-frame">
+                        <h3 class="font-playfair text-4xl text-amber-900 mb-3 font-bold">Dede Sudirman</h3>
+                        <p class="text-amber-800 mb-1">ᮓᮦᮓᮦ ᮞᮥᮓᮤᮁᮙᮔ᮪</p>
+                        <div class="h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent my-4"></div>
+                        <p class="text-amber-700 mb-2 font-cinzel">Putrana ti</p>
+                        <p class="text-amber-800 font-semibold">Bapak H. Ahmad Sudirman</p>
+                        <p class="text-amber-800 mb-4">&</p>
+                        <p class="text-amber-800 font-semibold">Ibu Hj. Siti Rohayati</p>
+                        
+                        <div class="flex justify-center gap-4 mt-6">
+                            <a href="#" class="w-10 h-10 bg-amber-900 text-amber-100 rounded-full flex items-center justify-center hover:bg-amber-800 transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-amber-900 text-amber-100 rounded-full flex items-center justify-center hover:bg-amber-800 transition">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <div class="text-8xl text-amber-600 font-playfair animate-float">&</div>
+                </div>
+
+                <!-- Bride -->
+                <div class="text-center reveal">
+                    <div class="mb-8">
+                        <div class="relative inline-block">
+                            <!-- Traditional Frame -->
+                            <div class="absolute -inset-4 border-4 border-amber-600 rounded-full"></div>
+                            <div class="absolute -inset-6 border-2 border-amber-700 rounded-full opacity-50"></div>
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" 
+                                 alt="Bride" 
+                                 class="relative w-72 h-72 rounded-full object-cover shadow-2xl mx-auto border-8 border-amber-100 transform hover:scale-105 transition duration-500">
+                        </div>
+                    </div>
+                    
+                    <div class="bg-amber-50 rounded-3xl p-8 traditional-frame">
+                        <h3 class="font-playfair text-4xl text-amber-900 mb-3 font-bold">Neng Siti Nurjanah</h3>
+                        <p class="text-amber-800 mb-1">ᮔᮦᮀ ᮞᮤᮒᮤ ᮔᮥᮁᮏᮔᮂ</p>
+                        <div class="h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent my-4"></div>
+                        <p class="text-amber-700 mb-2 font-cinzel">Putriana ti</p>
+                        <p class="text-amber-800 font-semibold">Bapak H. Budi Santosa</p>
+                        <p class="text-amber-800 mb-4">&</p>
+                        <p class="text-amber-800 font-semibold">Ibu Hj. Dewi Suryani</p>
+                        
+                        <div class="flex justify-center gap-4 mt-6">
+                            <a href="#" class="w-10 h-10 bg-amber-900 text-amber-100 rounded-full flex items-center justify-center hover:bg-amber-800 transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-amber-900 text-amber-100 rounded-full flex items-center justify-center hover:bg-amber-800 transition">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section id="countdown" class="py-20 bg-gradient-to-b from-orange-50 to-amber-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto text-center reveal">
+                <svg class="w-20 h-20 mx-auto mb-4" viewBox="0 0 100 100" fill="#92400e">
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#92400e" stroke-width="3"/>
+                    <path d="M50,15 L50,50 L70,50" stroke="#92400e" stroke-width="3" fill="none"/>
+                </svg>
+                <h2 class="font-cinzel text-5xl text-amber-900 mb-2">Itungan Waktos</h2>
+                <p class="text-amber-700 mb-12 text-lg">ᮃᮚᮥᮀ ᮠᮛᮤ ᮘᮠᮌᮤᮃ ᮎᮙᮤ</p>
+                
+                <div class="grid grid-cols-4 gap-4 md:gap-8">
+                    <div class="traditional-frame bg-white rounded-2xl p-6 shadow-xl transform hover:scale-105 transition duration-300">
+                        <div id="days" class="text-5xl md:text-6xl font-bold text-amber-900 mb-2 font-cinzel">00</div>
+                        <div class="text-amber-700 text-sm md:text-base uppercase font-cinzel">Dinten</div>
+                        <div class="text-amber-600 text-xs">ᮓᮤᮔ᮪ᮒᮦᮔ᮪</div>
+                    </div>
+                    <div class="traditional-frame bg-white rounded-2xl p-6 shadow-xl transform hover:scale-105 transition duration-300">
+                        <div id="hours" class="text-5xl md:text-6xl font-bold text-amber-900 mb-2 font-cinzel">00</div>
+                        <div class="text-amber-700 text-sm md:text-base uppercase font-cinzel">Jam</div>
+                        <div class="text-amber-600 text-xs">ᮏᮙ᮪</div>
+                    </div>
+                    <div class="traditional-frame bg-white rounded-2xl p-6 shadow-xl transform hover:scale-105 transition duration-300">
+                        <div id="minutes" class="text-5xl md:text-6xl font-bold text-amber-900 mb-2 font-cinzel">00</div>
+                        <div class="text-amber-700 text-sm md:text-base uppercase font-cinzel">Menit</div>
+                        <div class="text-amber-600 text-xs">ᮙᮦᮔᮤᮒ᮪</div>
+                    </div>
+                    <div class="traditional-frame bg-white rounded-2xl p-6 shadow-xl transform hover:scale-105 transition duration-300">
+                        <div id="seconds" class="text-5xl md:text-6xl font-bold text-amber-900 mb-2 font-cinzel">00</div>
+                        <div class="text-amber-700 text-sm md:text-base uppercase font-cinzel">Detik</div>
+                        <div class="text-amber-600 text-xs">ᮓᮦᮒᮤᮊ᮪</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section class="py-20 bg-brown relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 batik-pattern"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <svg class="w-20 h-20 mx-auto mb-4" viewBox="0 0 100 100" fill="#f59e0b">
+                    <rect x="20" y="30" width="60" height="50" fill="none" stroke="#f59e0b" stroke-width="3"/>
+                    <rect x="30" y="40" width="40" height="30" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                    <circle cx="50" cy="55" r="5" fill="#f59e0b"/>
+                </svg>
+                <h2 class="font-cinzel text-5xl text-amber-100 mb-2">Runtuyan Acara</h2>
+                <p class="text-amber-300">ᮛᮥᮔ᮪ᮒᮥᮚᮔ᮪ ᮃᮎᮛ</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Akad -->
+                <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl overflow-hidden shadow-2xl reveal transform hover:scale-105 transition duration-300">
+                    <div class="bg-amber-900 text-amber-50 py-4 px-8 text-center">
+                        <h3 class="font-cinzel text-2xl font-bold">AKAD NIKAH</h3>
+                        <p class="text-sm text-amber-200">ᮃᮊᮓ᮪ ᮔᮤᮊᮂ</p>
+                    </div>
+                    <div class="p-8">
+                        <div class="text-center mb-6">
+                            <svg class="w-16 h-16 mx-auto mb-4" viewBox="0 0 100 100" fill="#92400e">
+                                <path d="M50,20 L30,40 L30,80 L70,80 L70,40 Z"/>
+                                <circle cx="50" cy="50" r="8" fill="#f59e0b"/>
+                                <rect x="45" y="15" width="10" height="10" fill="#92400e"/>
+                            </svg>
+                        </div>
+                        <div class="space-y-4 text-amber-900">
+                            <div class="flex items-start gap-3 p-3 bg-white rounded-lg">
+                                <i class="far fa-calendar text-amber-700 text-xl mt-1"></i>
+                                <div>
+                                    <p class="font-cinzel font-semibold">Saptu, 15 Désémber 2024</p>
+                                    <p class="text-sm text-amber-600">ᮞᮕ᮪ᮒᮥ ᮊᮕᮥᮔ᮪</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 bg-white rounded-lg">
+                                <i class="far fa-clock text-amber-700 text-xl mt-1"></i>
+                                <div>
+                                    <p class="font-cinzel font-semibold">Tabuh 08.00 - 09.00 WIB</p>
+                                    <p class="text-sm text-amber-600">ᮒᮘᮥᮂ ᮏᮙ᮪ 8 ᮃᮀ</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 bg-white rounded-lg">
+                                <i class="fas fa-mosque text-amber-700 text-xl mt-1"></i>
+                                <div>
+                                    <p class="font-cinzel font-semibold">Masjid Al-Ikhlas</p>
+                                    <p class="text-sm">Jl. Raya Pasarkemis No. 88<br>Pasarkemis, Tangerang</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resepsi -->
+                <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl overflow-hidden shadow-2xl reveal transform hover:scale-105 transition duration-300">
+                    <div class="bg-amber-900 text-amber-50 py-4 px-8 text-center">
+                        <h3 class="font-cinzel text-2xl font-bold">RESEPSI NIKAH</h3>
+                        <p class="text-sm text-amber-200">ᮛᮦᮞᮦᮕ᮪ᮞᮤ ᮔᮤᮊᮂ</p>
+                    </div>
+                    <div class="p-8">
+                        <div class="text-center mb-6">
+                            <svg class="w-16 h-16 mx-auto mb-4" viewBox="0 0 100 100" fill="#92400e">
+                                <path d="M30,70 L30,40 L50,20 L70,40 L70,70 Z"/>
+                                <rect x="40" y="50" width="20" height="20" fill="#f59e0b"/>
+                                <rect x="45" y="30" width="10" height="15" fill="#92400e"/>
+                            </svg>
+                        </div>
+                        <div class="space-y-4 text-amber-900">
+                            <div class="flex items-start gap-3 p-3 bg-white rounded-lg">
+                                <i class="far fa-calendar text-amber-700 text-xl mt-1"></i>
+                                <div>
+                                    <p class="font-cinzel font-semibold">Saptu, 15 Désémber 2024</p>
+                                    <p class="text-sm text-amber-600">ᮞᮕ᮪ᮒᮥ ᮊᮕᮥᮔ᮪</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 bg-white rounded-lg">
+                                <i class="far fa-clock text-amber-700 text-xl mt-1"></i>
+                                <div>
+                                    <p class="font-cinzel font-semibold">Tabuh 11.00 - 15.00 WIB</p>
+                                    <p class="text-sm text-amber-600">ᮒᮘᮥᮂ ᮏᮙ᮪ 11 ᮃᮀ</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 bg-white rounded-lg">
+                                <i class="fas fa-home text-amber-700 text-xl mt-1"></i>
+                                <div>
+                                    <p class="font-cinzel font-semibold">Gedung Pusaka Sunda</p>
+                                    <p class="text-sm">Jl. Raya Pasarkemis No. 90<br>Pasarkemis, Tangerang</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-20 bg-gradient-to-b from-amber-50 to-orange-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <svg class="w-20 h-20 mx-auto mb-4" viewBox="0 0 100 100" fill="#92400e">
+                    <rect x="15" y="25" width="70" height="50" fill="none" stroke="#92400e" stroke-width="3"/>
+                    <circle cx="35" cy="45" r="8" fill="#92400e"/>
+                    <path d="M50,50 L65,35 L75,65" fill="none" stroke="#92400e" stroke-width="2"/>
+                </svg>
+                <h2 class="font-cinzel text-5xl text-amber-900 mb-2">Galeri Poto</h2>
+                <p class="text-amber-700">ᮌᮜᮦᮛᮤ ᮕᮧᮒᮧ</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-7xl mx-auto">
+                <div class="reveal overflow-hidden rounded-lg shadow-lg traditional-frame">
+                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400&h=400&fit=crop" 
+                         alt="Gallery 1" 
+                         class="w-full h-64 object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(0)">
+                </div>
+                <div class="reveal overflow-hidden rounded-lg shadow-lg traditional-frame">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=400&fit=crop" 
+                         alt="Gallery 2" 
+                         class="w-full h-64 object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(1)">
+                </div>
+                <div class="reveal overflow-hidden rounded-lg shadow-lg traditional-frame">
+                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=400&h=400&fit=crop" 
+                         alt="Gallery 3" 
+                         class="w-full h-64 object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(2)">
+                </div>
+                <div class="reveal overflow-hidden rounded-lg shadow-lg traditional-frame">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400&h=400&fit=crop" 
+                         alt="Gallery 4" 
+                         class="w-full h-64 object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(3)">
+                </div>
+                <div class="reveal overflow-hidden rounded-lg shadow-lg traditional-frame">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&h=400&fit=crop" 
+                         alt="Gallery 5" 
+                         class="w-full h-64 object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(4)">
+                </div>
+                <div class="reveal overflow-hidden rounded-lg shadow-lg traditional-frame">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&h=400&fit=crop" 
+                         alt="Gallery 6" 
+                         class="w-full h-64 object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(5)">
+                </div>
+                <div class="reveal overflow-hidden rounded-lg shadow-lg traditional-frame">
+                    <img src="https://images.unsplash.com/photo-1530047625168-4b29bfbbe1fc?w=400&h=400&fit=crop" 
+                         alt="Gallery 7" 
+                         class="w-full h-64 object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(6)">
+                </div>
+                <div class="reveal overflow-hidden rounded-lg shadow-lg traditional-frame">
+                    <img src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?w=400&h=400&fit=crop" 
+                         alt="Gallery 8" 
+                         class="w-full h-64 object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(7)">
+                </div>
+                <div class="reveal overflow-hidden rounded-lg shadow-lg traditional-frame">
+                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=400&h=400&fit=crop" 
+                         alt="Gallery 9" 
+                         class="w-full h-64 object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(8)">
+                </div>
+                <div class="reveal overflow-hidden rounded-lg shadow-lg traditional-frame">
+                    <img src="https://images.unsplash.com/photo-1525258441167-d0d5e8f3c9f5?w=400&h=400&fit=crop" 
+                         alt="Gallery 10" 
+                         class="w-full h-64 object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(9)">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="py-20 bg-maroon relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 batik-pattern"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <svg class="w-20 h-20 mx-auto mb-4" viewBox="0 0 100 100" fill="#f59e0b">
+                    <path d="M50,20 L50,80 M30,50 L70,50" stroke="#f59e0b" stroke-width="3"/>
+                    <circle cx="50" cy="50" r="15" fill="none" stroke="#f59e0b" stroke-width="3"/>
+                    <path d="M50,10 L55,25 L70,25 L58,35 L63,50 L50,40 L37,50 L42,35 L30,25 L45,25 Z" fill="#f59e0b"/>
+                </svg>
+                <h2 class="font-cinzel text-5xl text-amber-100 mb-2">Lokasi Acara</h2>
+                <p class="text-amber-300">ᮜᮧᮊᮞᮤ ᮃᮎᮛ</p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto">
+                <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl overflow-hidden shadow-2xl reveal traditional-frame">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0!2d106.5!3d-6.17!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTAnMTIuMCJTIDEwNsKwMzAnMDAuMCJF!5e0!3m2!1sen!2sid!4v1234567890" 
+                            width="100%" 
+                            height="450" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="p-8 text-center bg-white">
+                        <svg class="w-16 h-16 mx-auto mb-4" viewBox="0 0 100 100" fill="#92400e">
+                            <path d="M50,20 L30,40 L30,80 L70,80 L70,40 Z"/>
+                            <rect x="45" y="15" width="10" height="10" fill="#f59e0b"/>
+                        </svg>
+                        <h3 class="font-cinzel text-3xl font-bold text-amber-900 mb-2">Gedung Pusaka Sunda</h3>
+                        <p class="text-amber-800 mb-6">
+                            Jl. Raya Pasarkemis No. 90<br>
+                            Pasarkemis, Tangerang, Banten
+                        </p>
+                        <a href="https://maps.google.com/?q=Pasarkemis+Tangerang" 
+                           target="_blank"
+                           class="inline-block bg-brown text-amber-50 px-10 py-4 rounded-full font-cinzel font-semibold hover:shadow-xl transform hover:scale-105 transition duration-300 border-2 border-amber-700">
+                            <i class="fas fa-map-marked-alt mr-2"></i>Buka Peta
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="py-20 bg-gradient-to-b from-orange-50 to-amber-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto reveal">
+                <div class="text-center mb-12">
+                    <svg class="w-20 h-20 mx-auto mb-4" viewBox="0 0 100 100" fill="#92400e">
+                        <rect x="20" y="30" width="60" height="50" rx="5" fill="none" stroke="#92400e" stroke-width="3"/>
+                        <path d="M20,40 L50,60 L80,40" fill="none" stroke="#92400e" stroke-width="3"/>
+                    </svg>
+                    <h2 class="font-cinzel text-5xl text-amber-900 mb-2">Konfirmasi Kahadiran</h2>
+                    <p class="text-amber-700">ᮊᮧᮔ᮪ᮕᮤᮁᮙᮞᮤ ᮊᮠᮓᮤᮛᮔ᮪</p>
+                </div>
+                
+                <form class="space-y-6 bg-white p-8 rounded-3xl shadow-xl traditional-frame">
+                    <div>
+                        <label class="block text-amber-900 font-cinzel mb-2">Nami Lengkep</label>
+                        <input type="text" 
+                               placeholder="Asupkeun nami anjeun" 
+                               class="w-full px-6 py-4 rounded-xl border-2 border-amber-300 focus:border-amber-600 outline-none transition bg-amber-50">
+                    </div>
+                    <div>
+                        <label class="block text-amber-900 font-cinzel mb-2">Alamat Surélék</label>
+                        <input type="email" 
+                               placeholder="contoh@email.com" 
+                               class="w-full px-6 py-4 rounded-xl border-2 border-amber-300 focus:border-amber-600 outline-none transition bg-amber-50">
+                    </div>
+                    <div>
+                        <label class="block text-amber-900 font-cinzel mb-2">Kahadiran</label>
+                        <select class="w-full px-6 py-4 rounded-xl border-2 border-amber-300 focus:border-amber-600 outline-none transition bg-amber-50">
+                            <option>Pilih Kahadiran</option>
+                            <option>Hadir</option>
+                            <option>Teu Hadir</option>
+                            <option>Kénéh Mikir</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-amber-900 font-cinzel mb-2">Jumlah Tamu</label>
+                        <input type="number" 
+                               placeholder="Sabaraha jelema?" 
+                               class="w-full px-6 py-4 rounded-xl border-2 border-amber-300 focus:border-amber-600 outline-none transition bg-amber-50"
+                               min="1">
+                    </div>
+                    <div>
+                        <label class="block text-amber-900 font-cinzel mb-2">Ucapan & Doa</label>
+                        <textarea placeholder="Tuliskeun ucapan sareng doa kanggo kami..." 
+                                  rows="4" 
+                                  class="w-full px-6 py-4 rounded-xl border-2 border-amber-300 focus:border-amber-600 outline-none transition resize-none bg-amber-50"></textarea>
+                    </div>
+                    
+                    <button type="submit" 
+                            class="w-full bg-brown text-amber-50 px-8 py-4 rounded-full font-cinzel font-semibold hover:shadow-xl transform hover:scale-105 transition duration-300 border-2 border-amber-700">
+                        <i class="fas fa-paper-plane mr-2"></i>Kirimkeun Konfirmasi
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-b from-amber-900 to-amber-950 text-amber-100 py-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-8">
+                <svg class="w-24 h-24 mx-auto mb-6 animate-float" viewBox="0 0 100 100" fill="#f59e0b">
+                    <path d="M50,20 L60,45 L85,50 L60,55 L50,80 L40,55 L15,50 L40,45 Z"/>
+                    <circle cx="50" cy="50" r="12" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                </svg>
+                <h3 class="font-playfair text-5xl mb-3 text-amber-200">Dede & Neng</h3>
+                <p class="text-amber-300 mb-2">ᮓᮦᮓᮦ & ᮔᮦᮀ</p>
+                <div class="h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent my-6 max-w-md mx-auto"></div>
+                <p class="text-amber-300 font-cinzel">Hatur Nuhun Pisan</p>
+                <p class="text-sm text-amber-400 mt-2">Kanggo doa sareng restuna</p>
+            </div>
+            
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="#" class="w-12 h-12 bg-amber-800 rounded-full flex items-center justify-center hover:bg-amber-700 transition transform hover:scale-110">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 bg-amber-800 rounded-full flex items-center justify-center hover:bg-amber-700 transition transform hover:scale-110">
+                    <i class="fab fa-facebook text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 bg-amber-800 rounded-full flex items-center justify-center hover:bg-amber-700 transition transform hover:scale-110">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+            </div>
+            
+            <div class="text-sm text-amber-400">
+                <p>© 2024 - Dijieun ku Cinta kanggo Dede & Neng</p>
+                <p class="mt-2">ᮓᮤᮏᮤᮃᮥᮔ᮪ ᮊᮥ ᮎᮤᮔ᮪ᮒ</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-95 z-50 hidden items-center justify-center">
+        <button onclick="closeGallery()" class="absolute top-6 right-6 text-amber-400 text-5xl hover:text-amber-200 transition z-10">
+            <i class="fas fa-times"></i>
+        </button>
+        <button onclick="prevImage()" class="absolute left-6 text-amber-400 text-5xl hover:text-amber-200 transition">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button onclick="nextImage()" class="absolute right-6 text-amber-400 text-5xl hover:text-amber-200 transition">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <img id="modalImage" src="" alt="Gallery" class="max-w-[90%] max-h-[90%] object-contain traditional-frame">
+    </div>
+
+    <script>
+        // Opening Overlay
+        function openInvitation() {
+            document.getElementById('openingOverlay').classList.add('hidden');
+            document.getElementById('musicBtn').classList.remove('hidden');
+            playMusic();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Background Music
+        let isPlaying = false;
+        const music = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+
+        function playMusic() {
+            music.play();
+            isPlaying = true;
+            document.getElementById('musicBtn').classList.add('playing');
+            musicIcon.className = 'fas fa-music text-2xl';
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                isPlaying = false;
+                document.getElementById('musicBtn').classList.remove('playing');
+                musicIcon.className = 'fas fa-volume-mute text-2xl';
+            } else {
+                music.play();
+                isPlaying = true;
+                document.getElementById('musicBtn').classList.add('playing');
+                musicIcon.className = 'fas fa-music text-2xl';
+            }
+        }
+
+        // Countdown Timer
+        const weddingDate = new Date('December 15, 2024 08:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Scroll Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal();
+
+        // Gallery Modal
+        const galleryImages = [
+            'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1530047625168-4b29bfbbe1fc?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1525258441167-d0d5e8f3c9f5?w=800&h=800&fit=crop'
+        ];
+
+        let currentImageIndex = 0;
+
+        function openGallery(index) {
+            currentImageIndex = index;
+            document.getElementById('modalImage').src = galleryImages[index];
+            document.getElementById('galleryModal').classList.remove('hidden');
+            document.getElementById('galleryModal').classList.add('flex');
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').classList.add('hidden');
+            document.getElementById('galleryModal').classList.remove('flex');
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            document.getElementById('modalImage').src = galleryImages[currentImageIndex];
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            document.getElementById('modalImage').src = galleryImages[currentImageIndex];
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeGallery();
+            }
+        });
+
+        // Form Submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Hatur nuhun pisan! Konfirmasi anjeun parantos katampi. 🙏');
+            this.reset();
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
