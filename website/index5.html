@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Minimalist Theme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&family=Allura&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant', serif;
+            overflow-x: hidden;
+            background: #ffffff;
+        }
+
+        .font-allura {
+            font-family: 'Allura', cursive;
+        }
+
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* COLOR PALETTE - ONLY 3 COLORS */
+        /* 1. Navy Blue: #1a365d */
+        /* 2. Soft Pink: #fecdd3 */
+        /* 3. White: #ffffff */
+
+        .bg-navy {
+            background-color: #1a365d;
+        }
+
+        .bg-pink {
+            background-color: #fecdd3;
+        }
+
+        .text-navy {
+            color: #1a365d;
+        }
+
+        .text-pink {
+            color: #fecdd3;
+        }
+
+        .border-navy {
+            border-color: #1a365d;
+        }
+
+        .border-pink {
+            border-color: #fecdd3;
+        }
+
+        /* Minimal Pattern */
+        .dot-pattern {
+            background-image: radial-gradient(circle, #1a365d 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.05;
+        }
+
+        /* Vertical Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #fecdd3;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #1a365d;
+            border: 3px solid #fecdd3;
+        }
+
+        /* Split Layout */
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+
+        @media (max-width: 768px) {
+            .split-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Card Style */
+        .minimal-card {
+            background: white;
+            border: 2px solid #fecdd3;
+            transition: all 0.3s ease;
+        }
+
+        .minimal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(26, 54, 93, 0.15);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from { 
+                opacity: 0; 
+                transform: translateY(-30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from { 
+                opacity: 0; 
+                transform: translateX(30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% { 
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-fadeInDown {
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+
+        .animate-fadeInLeft {
+            animation: fadeInLeft 0.8s ease-out forwards;
+        }
+
+        .animate-fadeInRight {
+            animation: fadeInRight 0.8s ease-out forwards;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Music Button */
+        .music-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #1a365d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fecdd3;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(26, 54, 93, 0.3);
+            border: 2px solid #fecdd3;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .music-btn.playing {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1a365d;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0f1e35;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a365d 0%, #2d4a7c 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease;
+        }
+
+        .overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Circle Progress */
+        .circle-progress {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #fecdd3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #1a365d;
+            background: white;
+        }
+
+        /* Hexagon Shape */
+        .hexagon {
+            width: 100px;
+            height: 57.74px;
+            background: #fecdd3;
+            position: relative;
+            margin: 28.87px 0;
+        }
+
+        .hexagon::before,
+        .hexagon::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+        }
+
+        .hexagon::before {
+            bottom: 100%;
+            border-bottom: 28.87px solid #fecdd3;
+        }
+
+        .hexagon::after {
+            top: 100%;
+            border-top: 28.87px solid #fecdd3;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Opening Overlay -->
+    <div id="openingOverlay" class="overlay">
+        <div class="text-center animate-fadeInUp">
+            <div class="bg-white rounded-3xl p-14 shadow-2xl max-w-lg mx-4 border-4 border-pink">
+                <!-- Icon -->
+                <div class="mb-8">
+                    <div class="w-24 h-24 mx-auto bg-navy rounded-full flex items-center justify-center">
+                        <i class="fas fa-heart text-4xl text-pink"></i>
+                    </div>
+                </div>
+                
+                <h2 class="font-poppins text-3xl font-bold text-navy mb-3 uppercase tracking-wider">Welcome</h2>
+                <p class="text-navy text-lg mb-2 opacity-70 font-poppins">Kepada Yth.</p>
+                
+                <div class="h-0.5 bg-pink w-32 mx-auto my-6"></div>
+                
+                <p class="text-navy mb-10 text-lg font-poppins">
+                    <span class="font-semibold">Bapak/Ibu/Saudara/i</span>
+                </p>
+                
+                <button onclick="openInvitation()" class="bg-navy text-pink px-12 py-4 rounded-full font-poppins font-bold hover:shadow-2xl transform hover:scale-105 transition duration-300 text-lg uppercase tracking-wider">
+                    <i class="fas fa-envelope-open mr-2"></i>Buka Undangan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Button -->
+    <div id="musicBtn" class="music-btn hidden" onclick="toggleMusic()">
+        <i id="musicIcon" class="fas fa-music text-xl"></i>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Hero Section - Split Layout -->
+    <section class="split-section">
+        <!-- Left Side - Image -->
+        <div class="bg-navy relative flex items-center justify-center p-10">
+            <div class="absolute inset-0 dot-pattern"></div>
+            <div class="relative z-10 text-center animate-fadeInLeft">
+                <div class="w-80 h-80 mx-auto rounded-full border-4 border-pink overflow-hidden mb-8">
+                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&h=600&fit=crop" 
+                         alt="Couple" 
+                         class="w-full h-full object-cover">
+                </div>
+                <p class="text-pink text-xl font-poppins uppercase tracking-widest">Save The Date</p>
+            </div>
+        </div>
+
+        <!-- Right Side - Content -->
+        <div class="bg-white flex items-center justify-center p-10">
+            <div class="animate-fadeInRight text-center">
+                <p class="text-navy text-lg mb-4 font-poppins uppercase tracking-widest">The Wedding Of</p>
+                
+                <h1 class="font-allura text-8xl text-navy mb-6">
+                    Fajar & Dina
+                </h1>
+
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <div class="h-0.5 bg-navy w-16"></div>
+                    <i class="fas fa-heart text-pink text-2xl"></i>
+                    <div class="h-0.5 bg-navy w-16"></div>
+                </div>
+
+                <div class="text-navy text-xl mb-10 font-poppins">
+                    <p class="mb-2">15 • 12 • 2024</p>
+                    <p class="text-base opacity-70">Sabtu, 15 Desember 2024</p>
+                </div>
+
+                <a href="#couple" class="inline-block bg-navy text-white px-10 py-4 rounded-full font-poppins font-semibold hover:shadow-2xl transform hover:scale-105 transition duration-300 border-2 border-navy hover:bg-white hover:text-navy">
+                    Lihat Selengkapnya
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="py-20 bg-pink">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center reveal">
+                <div class="mb-8">
+                    <i class="fas fa-quote-left text-4xl text-navy opacity-30"></i>
+                </div>
+                
+                <p class="text-2xl md:text-3xl text-navy italic mb-8 leading-relaxed font-cormorant">
+                    Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan-pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya.
+                </p>
+                
+                <div class="h-0.5 bg-navy w-24 mx-auto mb-6"></div>
+                
+                <p class="text-navy font-poppins font-bold text-lg">QS. Ar-Rum : 21</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bride & Groom Section - Card Layout -->
+    <section id="couple" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-allura text-6xl text-navy mb-2">Mempelai</h2>
+                <p class="text-navy text-lg font-poppins opacity-70">The Bride & Groom</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+                <!-- Groom Card -->
+                <div class="reveal">
+                    <div class="minimal-card rounded-3xl overflow-hidden">
+                        <div class="h-80 bg-navy relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop" 
+                                 alt="Groom" 
+                                 class="w-full h-full object-cover opacity-90">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy to-transparent"></div>
+                        </div>
+                        <div class="p-8 text-center">
+                            <h3 class="font-allura text-5xl text-navy mb-3">Fajar Ramadhan</h3>
+                            <p class="text-navy mb-6 font-poppins opacity-70">Mempelai Pria</p>
+                            
+                            <div class="h-0.5 bg-pink w-20 mx-auto mb-6"></div>
+                            
+                            <p class="text-navy mb-2 font-poppins text-sm uppercase tracking-wider opacity-60">Putra dari</p>
+                            <p class="text-navy font-semibold text-lg mb-1">Bapak Ahmad Ramadhan</p>
+                            <p class="text-pink text-lg mb-2">&</p>
+                            <p class="text-navy font-semibold text-lg mb-6">Ibu Siti Aminah</p>
+                            
+                            <div class="flex justify-center gap-3">
+                                <a href="#" class="w-10 h-10 bg-navy text-pink rounded-full flex items-center justify-center hover:bg-pink hover:text-navy transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-navy text-pink rounded-full flex items-center justify-center hover:bg-pink hover:text-navy transition">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bride Card -->
+                <div class="reveal">
+                    <div class="minimal-card rounded-3xl overflow-hidden">
+                        <div class="h-80 bg-navy relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=500&fit=crop" 
+                                 alt="Bride" 
+                                 class="w-full h-full object-cover opacity-90">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy to-transparent"></div>
+                        </div>
+                        <div class="p-8 text-center">
+                            <h3 class="font-allura text-5xl text-navy mb-3">Dina Puspita</h3>
+                            <p class="text-navy mb-6 font-poppins opacity-70">Mempelai Wanita</p>
+                            
+                            <div class="h-0.5 bg-pink w-20 mx-auto mb-6"></div>
+                            
+                            <p class="text-navy mb-2 font-poppins text-sm uppercase tracking-wider opacity-60">Putri dari</p>
+                            <p class="text-navy font-semibold text-lg mb-1">Bapak Budi Santoso</p>
+                            <p class="text-pink text-lg mb-2">&</p>
+                            <p class="text-navy font-semibold text-lg mb-6">Ibu Rina Puspita</p>
+                            
+                            <div class="flex justify-center gap-3">
+                                <a href="#" class="w-10 h-10 bg-navy text-pink rounded-full flex items-center justify-center hover:bg-pink hover:text-navy transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-navy text-pink rounded-full flex items-center justify-center hover:bg-pink hover:text-navy transition">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section - Horizontal Cards -->
+    <section id="countdown" class="py-20 bg-pink">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto text-center reveal">
+                <h2 class="font-allura text-6xl text-navy mb-2">Countdown</h2>
+                <p class="text-navy mb-12 text-lg font-poppins opacity-70">Menuju Hari Bahagia</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="minimal-card rounded-2xl p-8 bg-white">
+                        <div class="circle-progress mx-auto mb-4">
+                            <div id="days" class="font-poppins">00</div>
+                        </div>
+                        <div class="text-navy text-lg uppercase font-poppins font-semibold tracking-wider">Hari</div>
+                    </div>
+                    <div class="minimal-card rounded-2xl p-8 bg-white">
+                        <div class="circle-progress mx-auto mb-4">
+                            <div id="hours" class="font-poppins">00</div>
+                        </div>
+                        <div class="text-navy text-lg uppercase font-poppins font-semibold tracking-wider">Jam</div>
+                    </div>
+                    <div class="minimal-card rounded-2xl p-8 bg-white">
+                        <div class="circle-progress mx-auto mb-4">
+                            <div id="minutes" class="font-poppins">00</div>
+                        </div>
+                        <div class="text-navy text-lg uppercase font-poppins font-semibold tracking-wider">Menit</div>
+                    </div>
+                    <div class="minimal-card rounded-2xl p-8 bg-white">
+                        <div class="circle-progress mx-auto mb-4">
+                            <div id="seconds" class="font-poppins">00</div>
+                        </div>
+                        <div class="text-navy text-lg uppercase font-poppins font-semibold tracking-wider">Detik</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details - Timeline Layout -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-allura text-6xl text-navy mb-2">Detail Acara</h2>
+                <p class="text-navy text-lg font-poppins opacity-70">Waktu & Tempat</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="timeline">
+                    <!-- Akad -->
+                    <div class="timeline-item reveal">
+                        <div class="minimal-card rounded-2xl p-8 bg-white">
+                            <div class="flex items-start gap-6">
+                                <div class="w-16 h-16 bg-navy rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-mosque text-2xl text-pink"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-poppins text-2xl font-bold text-navy mb-4 uppercase tracking-wide">Akad Nikah</h3>
+                                    <div class="space-y-3 text-navy">
+                                        <p class="flex items-center gap-3">
+                                            <i class="far fa-calendar text-pink"></i>
+                                            <span class="font-poppins font-semibold">Sabtu, 15 Desember 2024</span>
+                                        </p>
+                                        <p class="flex items-center gap-3">
+                                            <i class="far fa-clock text-pink"></i>
+                                            <span class="font-poppins font-semibold">08:00 - 09:00 WIB</span>
+                                        </p>
+                                        <p class="flex items-start gap-3">
+                                            <i class="fas fa-map-marker-alt text-pink mt-1"></i>
+                                            <span class="font-poppins">
+                                                <strong>Masjid Besar</strong><br>
+                                                <span class="text-sm opacity-70">Jl. Raya Pasarkemis No. 88, Pasarkemis, Tangerang</span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resepsi -->
+                    <div class="timeline-item reveal">
+                        <div class="minimal-card rounded-2xl p-8 bg-white">
+                            <div class="flex items-start gap-6">
+                                <div class="w-16 h-16 bg-navy rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-glass-cheers text-2xl text-pink"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-poppins text-2xl font-bold text-navy mb-4 uppercase tracking-wide">Resepsi</h3>
+                                    <div class="space-y-3 text-navy">
+                                        <p class="flex items-center gap-3">
+                                            <i class="far fa-calendar text-pink"></i>
+                                            <span class="font-poppins font-semibold">Sabtu, 15 Desember 2024</span>
+                                        </p>
+                                        <p class="flex items-center gap-3">
+                                            <i class="far fa-clock text-pink"></i>
+                                            <span class="font-poppins font-semibold">11:00 - 15:00 WIB</span>
+                                        </p>
+                                        <p class="flex items-start gap-3">
+                                            <i class="fas fa-home text-pink mt-1"></i>
+                                            <span class="font-poppins">
+                                                <strong>Ballroom Grand Hotel</strong><br>
+                                                <span class="text-sm opacity-70">Jl. Raya Pasarkemis No. 99, Pasarkemis, Tangerang</span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section - Grid Layout -->
+    <section class="py-20 bg-pink">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-allura text-6xl text-navy mb-2">Galeri</h2>
+                <p class="text-navy text-lg font-poppins opacity-70">Our Moments</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
+                <div class="reveal overflow-hidden rounded-2xl minimal-card aspect-square">
+                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400&h=400&fit=crop" 
+                         alt="Gallery 1" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(0)">
+                </div>
+                <div class="reveal overflow-hidden rounded-2xl minimal-card aspect-square">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=400&fit=crop" 
+                         alt="Gallery 2" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(1)">
+                </div>
+                <div class="reveal overflow-hidden rounded-2xl minimal-card aspect-square">
+                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=400&h=400&fit=crop" 
+                         alt="Gallery 3" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(2)">
+                </div>
+                <div class="reveal overflow-hidden rounded-2xl minimal-card aspect-square">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400&h=400&fit=crop" 
+                         alt="Gallery 4" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(3)">
+                </div>
+                <div class="reveal overflow-hidden rounded-2xl minimal-card aspect-square">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&h=400&fit=crop" 
+                         alt="Gallery 5" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(4)">
+                </div>
+                <div class="reveal overflow-hidden rounded-2xl minimal-card aspect-square">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&h=400&fit=crop" 
+                         alt="Gallery 6" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(5)">
+                </div>
+                <div class="reveal overflow-hidden rounded-2xl minimal-card aspect-square">
+                    <img src="https://images.unsplash.com/photo-1530047625168-4b29bfbbe1fc?w=400&h=400&fit=crop" 
+                         alt="Gallery 7" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(6)">
+                </div>
+                <div class="reveal overflow-hidden rounded-2xl minimal-card aspect-square">
+                    <img src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?w=400&h=400&fit=crop" 
+                         alt="Gallery 8" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(7)">
+                </div>
+                <div class="reveal overflow-hidden rounded-2xl minimal-card aspect-square">
+                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=400&h=400&fit=crop" 
+                         alt="Gallery 9" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(8)">
+                </div>
+                <div class="reveal overflow-hidden rounded-2xl minimal-card aspect-square">
+                    <img src="https://images.unsplash.com/photo-1525258441167-d0d5e8f3c9f5?w=400&h=400&fit=crop" 
+                         alt="Gallery 10" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(9)">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-allura text-6xl text-navy mb-2">Lokasi</h2>
+                <p class="text-navy text-lg font-poppins opacity-70">Find Us</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="minimal-card rounded-3xl overflow-hidden reveal">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0!2d106.5!3d-6.17!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTAnMTIuMCJTIDEwNsKwMzAnMDAuMCJF!5e0!3m2!1sen!2sid!4v1234567890" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                    <div class="p-10 text-center bg-white">
+                        <div class="w-16 h-16 mx-auto mb-6 bg-navy rounded-full flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt text-2xl text-pink"></i>
+                        </div>
+                        <h3 class="font-poppins text-3xl font-bold text-navy mb-3">Ballroom Grand Hotel</h3>
+                        <p class="text-navy text-lg mb-8 font-poppins opacity-70">
+                            Jl. Raya Pasarkemis No. 99<br>
+                            Pasarkemis, Tangerang, Banten
+                        </p>
+                        <a href="https://maps.google.com/?q=Pasarkemis+Tangerang" 
+                           target="_blank"
+                           class="inline-block bg-navy text-white px-12 py-4 rounded-full font-poppins font-bold hover:shadow-2xl transform hover:scale-105 transition duration-300 border-2 border-navy hover:bg-white hover:text-navy">
+                            <i class="fas fa-directions mr-2"></i>Buka Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="py-20 bg-pink">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto reveal">
+                <div class="text-center mb-12">
+                    <h2 class="font-allura text-6xl text-navy mb-2">RSVP</h2>
+                    <p class="text-navy text-lg font-poppins opacity-70">Konfirmasi Kehadiran</p>
+                </div>
+                
+                <form class="space-y-6 minimal-card rounded-3xl p-10 bg-white">
+                    <div>
+                        <label class="block text-navy font-poppins font-semibold mb-2">Nama Lengkap</label>
+                        <input type="text" 
+                               placeholder="Masukkan nama" 
+                               class="w-full px-6 py-4 rounded-xl border-2 border-pink focus:border-navy outline-none transition font-poppins">
+                    </div>
+                    <div>
+                        <label class="block text-navy font-poppins font-semibold mb-2">Email</label>
+                        <input type="email" 
+                               placeholder="email@example.com" 
+                               class="w-full px-6 py-4 rounded-xl border-2 border-pink focus:border-navy outline-none transition font-poppins">
+                    </div>
+                    <div>
+                        <label class="block text-navy font-poppins font-semibold mb-2">Kehadiran</label>
+                        <select class="w-full px-6 py-4 rounded-xl border-2 border-pink focus:border-navy outline-none transition font-poppins">
+                            <option>Pilih</option>
+                            <option>Hadir</option>
+                            <option>Tidak Hadir</option>
+                            <option>Masih Ragu</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-navy font-poppins font-semibold mb-2">Jumlah Tamu</label>
+                        <input type="number" 
+                               placeholder="Berapa orang?" 
+                               class="w-full px-6 py-4 rounded-xl border-2 border-pink focus:border-navy outline-none transition font-poppins"
+                               min="1">
+                    </div>
+                    <div>
+                        <label class="block text-navy font-poppins font-semibold mb-2">Ucapan & Doa</label>
+                        <textarea placeholder="Tuliskan ucapan..." 
+                                  rows="4" 
+                                  class="w-full px-6 py-4 rounded-xl border-2 border-pink focus:border-navy outline-none transition resize-none font-poppins"></textarea>
+                    </div>
+                    
+                    <button type="submit" 
+                            class="w-full bg-navy text-white px-8 py-5 rounded-xl font-poppins font-bold hover:shadow-2xl transform hover:scale-105 transition duration-300 uppercase tracking-wider">
+                        <i class="fas fa-paper-plane mr-2"></i>Kirim Konfirmasi
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-8">
+                <div class="w-20 h-20 mx-auto mb-6 bg-pink rounded-full flex items-center justify-center">
+                    <i class="fas fa-heart text-3xl text-navy"></i>
+                </div>
+                
+                <h3 class="font-allura text-5xl text-pink mb-3">Fajar & Dina</h3>
+                <p class="text-white text-lg font-poppins opacity-70">Thank You</p>
+                
+                <div class="h-0.5 bg-pink w-24 mx-auto my-8"></div>
+                
+                <p class="text-white font-poppins opacity-60">Terima kasih atas doa dan kehadiran Anda</p>
+            </div>
+            
+            <div class="flex justify-center gap-4 mb-8">
+                <a href="#" class="w-12 h-12 bg-pink text-navy rounded-full flex items-center justify-center hover:bg-white transition transform hover:scale-110">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 bg-pink text-navy rounded-full flex items-center justify-center hover:bg-white transition transform hover:scale-110">
+                    <i class="fab fa-facebook text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 bg-pink text-navy rounded-full flex items-center justify-center hover:bg-white transition transform hover:scale-110">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+            </div>
+            
+            <p class="text-white font-poppins text-sm opacity-40">© 2024 - Made with Love</p>
+        </div>
+    </footer>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="fixed inset-0 bg-navy bg-opacity-95 z-50 hidden items-center justify-center">
+        <button onclick="closeGallery()" class="absolute top-8 right-8 text-pink text-5xl hover:text-white transition z-10">
+            <i class="fas fa-times"></i>
+        </button>
+        <button onclick="prevImage()" class="absolute left-8 text-pink text-5xl hover:text-white transition">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button onclick="nextImage()" class="absolute right-8 text-pink text-5xl hover:text-white transition">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <img id="modalImage" src="" alt="Gallery" class="max-w-[90%] max-h-[90%] object-contain rounded-2xl">
+    </div>
+
+    <script>
+        // Opening Overlay
+        function openInvitation() {
+            document.getElementById('openingOverlay').classList.add('hidden');
+            document.getElementById('musicBtn').classList.remove('hidden');
+            playMusic();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Background Music
+        let isPlaying = false;
+        const music = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+
+        function playMusic() {
+            music.play();
+            isPlaying = true;
+            document.getElementById('musicBtn').classList.add('playing');
+            musicIcon.className = 'fas fa-music text-xl';
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                isPlaying = false;
+                document.getElementById('musicBtn').classList.remove('playing');
+                musicIcon.className = 'fas fa-volume-mute text-xl';
+            } else {
+                music.play();
+                isPlaying = true;
+                document.getElementById('musicBtn').classList.add('playing');
+                musicIcon.className = 'fas fa-music text-xl';
+            }
+        }
+
+        // Countdown Timer
+        const weddingDate = new Date('December 15, 2024 08:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Scroll Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal();
+
+        // Gallery Modal
+        const galleryImages = [
+            'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1530047625168-4b29bfbbe1fc?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1525258441167-d0d5e8f3c9f5?w=800&h=800&fit=crop'
+        ];
+
+        let currentImageIndex = 0;
+
+        function openGallery(index) {
+            currentImageIndex = index;
+            document.getElementById('modalImage').src = galleryImages[index];
+            document.getElementById('galleryModal').classList.remove('hidden');
+            document.getElementById('galleryModal').classList.add('flex');
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').classList.add('hidden');
+            document.getElementById('galleryModal').classList.remove('flex');
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            document.getElementById('modalImage').src = galleryImages[currentImageIndex];
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            document.getElementById('modalImage').src = galleryImages[currentImageIndex];
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeGallery();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            }
+        });
+
+        // Form Submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Konfirmasi Anda telah diterima. 💙');
+            this.reset();
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Luxury Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Jost:wght@300;400;500;600;700&family=Alex+Brush&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            overflow-x: hidden;
+            background: #fcf9f4;
+        }
+
+        .font-alex {
+            font-family: 'Alex Brush', cursive;
+        }
+
+        .font-philosopher {
+            font-family: 'Philosopher', sans-serif;
+        }
+
+        /* COLOR PALETTE - ONLY 3 COLORS */
+        /* 1. Emerald Green: #047857 */
+        /* 2. Champagne Gold: #d4af37 */
+        /* 3. Off White: #fcf9f4 */
+
+        .bg-emerald {
+            background-color: #047857;
+        }
+
+        .bg-gold {
+            background-color: #d4af37;
+        }
+
+        .bg-offwhite {
+            background-color: #fcf9f4;
+        }
+
+        .text-emerald {
+            color: #047857;
+        }
+
+        .text-gold {
+            color: #d4af37;
+        }
+
+        .text-offwhite {
+            color: #fcf9f4;
+        }
+
+        .border-emerald {
+            border-color: #047857;
+        }
+
+        .border-gold {
+            border-color: #d4af37;
+        }
+
+        /* Diagonal Section */
+        .diagonal-left {
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .diagonal-right {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+        }
+
+        .diagonal-both {
+            clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+        }
+
+        /* Ribbon Design */
+        .ribbon {
+            position: relative;
+            background: #d4af37;
+            padding: 20px 40px;
+        }
+
+        .ribbon::before,
+        .ribbon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .ribbon::before {
+            left: -20px;
+            border-width: 30px 20px 30px 0;
+            border-color: transparent #d4af37 transparent transparent;
+        }
+
+        .ribbon::after {
+            right: -20px;
+            border-width: 30px 0 30px 20px;
+            border-color: transparent transparent transparent #d4af37;
+        }
+
+        /* Ticket Style Card */
+        .ticket-card {
+            background: white;
+            position: relative;
+            border: 3px dashed #047857;
+        }
+
+        .ticket-card::before,
+        .ticket-card::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #fcf9f4;
+        }
+
+        .ticket-card::before {
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .ticket-card::after {
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Vertical Split */
+        .vertical-split {
+            display: grid;
+            grid-template-columns: 40% 60%;
+        }
+
+        @media (max-width: 768px) {
+            .vertical-split {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Luxury Frame */
+        .luxury-frame {
+            border: 4px solid #d4af37;
+            position: relative;
+            padding: 30px;
+        }
+
+        .luxury-frame::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid #047857;
+            pointer-events: none;
+        }
+
+        /* Corner Ornament */
+        .corner-ornament {
+            position: relative;
+        }
+
+        .corner-ornament::before,
+        .corner-ornament::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #d4af37;
+        }
+
+        .corner-ornament::before {
+            top: 0;
+            left: 0;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-ornament::after {
+            bottom: 0;
+            right: 0;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* Diamond Shape */
+        .diamond {
+            width: 100px;
+            height: 100px;
+            background: #d4af37;
+            transform: rotate(45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .diamond-inner {
+            transform: rotate(-45deg);
+        }
+
+        /* Stripe Pattern */
+        .stripe-pattern {
+            background-image: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(4, 120, 87, 0.03) 10px,
+                rgba(4, 120, 87, 0.03) 20px
+            );
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-70px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from { 
+                opacity: 0; 
+                transform: translateX(70px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleUp {
+            from { 
+                opacity: 0; 
+                transform: scale(0.85);
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0);
+            }
+            50% { 
+                transform: translateY(-25px);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .animate-slideInLeft {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .animate-slideInRight {
+            animation: slideInRight 1s ease-out forwards;
+        }
+
+        .animate-scaleUp {
+            animation: scaleUp 0.8s ease-out forwards;
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .shimmer-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(212, 175, 55, 0.3),
+                transparent
+            );
+            animation: shimmer 3s infinite;
+        }
+
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Music Button */
+        .music-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            width: 70px;
+            height: 70px;
+            border-radius: 0;
+            background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d4af37;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(4, 120, 87, 0.4);
+            border: 3px solid #d4af37;
+            transition: all 0.3s ease;
+            clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .music-btn.playing {
+            animation: float 2s ease-in-out infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fcf9f4;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #047857 0%, #d4af37 100%);
+            border-radius: 0;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #065f46 0%, #b8941f 100%);
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease;
+        }
+
+        .overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Luxury Card */
+        .luxury-card {
+            background: white;
+            box-shadow: 0 10px 40px rgba(4, 120, 87, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .luxury-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(4, 120, 87, 0.25);
+        }
+    </style>
+</head>
+<body class="stripe-pattern">
+    
+    <!-- Opening Overlay -->
+    <div id="openingOverlay" class="overlay">
+        <div class="text-center animate-scaleUp">
+            <div class="bg-offwhite p-16 shadow-2xl max-w-xl mx-4 luxury-frame">
+                <!-- Diamond Icon -->
+                <div class="diamond mx-auto mb-8 shadow-xl">
+                    <div class="diamond-inner">
+                        <i class="fas fa-gem text-3xl text-emerald"></i>
+                    </div>
+                </div>
+                
+                <h2 class="font-philosopher text-4xl text-emerald mb-3 uppercase tracking-widest font-bold">Invitation</h2>
+                <p class="text-emerald text-lg mb-2 opacity-80 font-jost">You Are Cordially Invited</p>
+                
+                <div class="flex justify-center gap-3 my-8">
+                    <div class="w-20 h-1 bg-gold"></div>
+                    <div class="w-2 h-1 bg-emerald"></div>
+                    <div class="w-20 h-1 bg-gold"></div>
+                </div>
+                
+                <p class="text-emerald mb-10 font-jost">
+                    Kepada Yth.<br>
+                    <span class="font-semibold text-xl">Bapak/Ibu/Saudara/i</span>
+                </p>
+                
+                <button onclick="openInvitation()" class="bg-emerald text-gold px-14 py-4 font-jost font-bold hover:shadow-2xl transform hover:scale-105 transition duration-300 uppercase tracking-widest border-2 border-gold shimmer-effect">
+                    Open Invitation
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Button -->
+    <div id="musicBtn" class="music-btn hidden" onclick="toggleMusic()">
+        <i id="musicIcon" class="fas fa-music text-xl"></i>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Hero Section - Vertical Split -->
+    <section class="vertical-split min-h-screen">
+        <!-- Left Side - Emerald -->
+        <div class="bg-emerald flex items-center justify-center p-10 relative diagonal-right">
+            <div class="stripe-pattern absolute inset-0 opacity-20"></div>
+            <div class="relative z-10 text-center animate-slideInLeft">
+                <div class="mb-8 animate-float">
+                    <div class="diamond mx-auto shadow-2xl">
+                        <div class="diamond-inner">
+                            <i class="fas fa-crown text-4xl text-offwhite"></i>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="font-alex text-8xl text-gold mb-4">
+                    Dimas<br>&<br>Putri
+                </h1>
+                <div class="flex justify-center gap-3 my-6">
+                    <div class="w-16 h-0.5 bg-gold"></div>
+                    <div class="w-2 h-0.5 bg-offwhite"></div>
+                    <div class="w-16 h-0.5 bg-gold"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Content -->
+        <div class="bg-offwhite flex items-center justify-center p-10">
+            <div class="animate-slideInRight text-center max-w-md">
+                <p class="text-emerald text-lg mb-4 font-philosopher uppercase tracking-widest font-bold">Wedding Celebration</p>
+                
+                <div class="luxury-frame bg-white p-8 my-8">
+                    <p class="text-gold text-6xl font-philosopher font-bold mb-2">15</p>
+                    <p class="text-emerald text-2xl font-jost mb-2">Desember</p>
+                    <p class="text-emerald text-4xl font-philosopher font-bold">2024</p>
+                </div>
+
+                <div class="space-y-3 mb-8">
+                    <div class="flex items-center justify-center gap-3">
+                        <div class="w-12 h-0.5 bg-emerald"></div>
+                        <i class="fas fa-calendar text-gold text-xl"></i>
+                        <div class="w-12 h-0.5 bg-emerald"></div>
+                    </div>
+                    <p class="text-emerald font-jost">Sabtu, 15 Desember 2024</p>
+                    <p class="text-emerald font-jost opacity-70">Pukul 08.00 WIB</p>
+                </div>
+
+                <a href="#details" class="inline-block bg-emerald text-offwhite px-12 py-4 font-jost font-semibold hover:shadow-2xl transform hover:scale-105 transition duration-300 uppercase tracking-wider border-2 border-gold">
+                    View Details
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="py-28 bg-offwhite">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center reveal">
+                <div class="luxury-frame bg-white p-14">
+                    <div class="flex justify-center mb-8">
+                        <div class="diamond shadow-xl">
+                            <div class="diamond-inner">
+                                <i class="fas fa-book-open text-2xl text-offwhite"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-3xl md:text-4xl text-emerald italic mb-10 leading-relaxed font-philosopher">
+                        Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan-pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya.
+                    </p>
+                    
+                    <div class="flex justify-center gap-3 my-8">
+                        <div class="w-16 h-1 bg-gold"></div>
+                        <div class="w-2 h-1 bg-emerald"></div>
+                        <div class="w-16 h-1 bg-gold"></div>
+                    </div>
+                    
+                    <p class="text-gold font-jost font-bold text-xl uppercase tracking-widest">QS. Ar-Rum : 21</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Couple Section - Ribbon Style -->
+    <section class="py-28 bg-emerald diagonal-both relative">
+        <div class="stripe-pattern absolute inset-0 opacity-10"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-20 reveal">
+                <div class="ribbon inline-block mb-6">
+                    <h2 class="font-philosopher text-4xl text-offwhite uppercase tracking-widest font-bold">The Couple</h2>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-16 max-w-6xl mx-auto">
+                <!-- Groom -->
+                <div class="reveal">
+                    <div class="luxury-card corner-ornament p-10">
+                        <div class="mb-8 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop" 
+                                 alt="Groom" 
+                                 class="w-full h-[500px] object-cover transform hover:scale-110 transition duration-500">
+                        </div>
+                        <div class="text-center">
+                            <div class="mb-6">
+                                <div class="diamond mx-auto shadow-xl">
+                                    <div class="diamond-inner">
+                                        <i class="fas fa-user-tie text-2xl text-offwhite"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="font-alex text-6xl text-gold mb-3">Dimas Prasetyo</h3>
+                            <p class="text-emerald mb-6 font-jost uppercase tracking-wider text-sm font-semibold">The Groom</p>
+                            
+                            <div class="w-16 h-1 bg-gold mx-auto mb-6"></div>
+                            
+                            <p class="text-emerald mb-2 font-jost text-sm uppercase tracking-wider opacity-70">Son of</p>
+                            <p class="text-emerald font-semibold text-lg mb-1">Bapak Prasetyo Adi</p>
+                            <p class="text-gold text-lg mb-2">&</p>
+                            <p class="text-emerald font-semibold text-lg mb-8">Ibu Wulan Sari</p>
+                            
+                            <div class="flex justify-center gap-3">
+                                <a href="#" class="w-11 h-11 border-2 border-emerald text-emerald flex items-center justify-center hover:bg-emerald hover:text-offwhite transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-11 h-11 border-2 border-emerald text-emerald flex items-center justify-center hover:bg-emerald hover:text-offwhite transition">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bride -->
+                <div class="reveal">
+                    <div class="luxury-card corner-ornament p-10">
+                        <div class="mb-8 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=600&fit=crop" 
+                                 alt="Bride" 
+                                 class="w-full h-[500px] object-cover transform hover:scale-110 transition duration-500">
+                        </div>
+                        <div class="text-center">
+                            <div class="mb-6">
+                                <div class="diamond mx-auto shadow-xl">
+                                    <div class="diamond-inner">
+                                        <i class="fas fa-crown text-2xl text-offwhite"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="font-alex text-6xl text-gold mb-3">Putri Maharani</h3>
+                            <p class="text-emerald mb-6 font-jost uppercase tracking-wider text-sm font-semibold">The Bride</p>
+                            
+                            <div class="w-16 h-1 bg-gold mx-auto mb-6"></div>
+                            
+                            <p class="text-emerald mb-2 font-jost text-sm uppercase tracking-wider opacity-70">Daughter of</p>
+                            <p class="text-emerald font-semibold text-lg mb-1">Bapak Maharani Putra</p>
+                            <p class="text-gold text-lg mb-2">&</p>
+                            <p class="text-emerald font-semibold text-lg mb-8">Ibu Indah Permata</p>
+                            
+                            <div class="flex justify-center gap-3">
+                                <a href="#" class="w-11 h-11 border-2 border-emerald text-emerald flex items-center justify-center hover:bg-emerald hover:text-offwhite transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-11 h-11 border-2 border-emerald text-emerald flex items-center justify-center hover:bg-emerald hover:text-offwhite transition">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section id="countdown" class="py-28 bg-offwhite">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto text-center reveal">
+                <div class="ribbon inline-block mb-12">
+                    <h2 class="font-philosopher text-4xl text-offwhite uppercase tracking-widest font-bold">Countdown</h2>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="luxury-card p-10 corner-ornament">
+                        <div class="diamond mx-auto mb-6 shadow-xl">
+                            <div class="diamond-inner">
+                                <div id="days" class="text-3xl font-bold text-offwhite font-jost">00</div>
+                            </div>
+                        </div>
+                        <p class="text-emerald font-jost font-bold uppercase tracking-widest text-sm">Days</p>
+                    </div>
+                    <div class="luxury-card p-10 corner-ornament">
+                        <div class="diamond mx-auto mb-6 shadow-xl">
+                            <div class="diamond-inner">
+                                <div id="hours" class="text-3xl font-bold text-offwhite font-jost">00</div>
+                            </div>
+                        </div>
+                        <p class="text-emerald font-jost font-bold uppercase tracking-widest text-sm">Hours</p>
+                    </div>
+                    <div class="luxury-card p-10 corner-ornament">
+                        <div class="diamond mx-auto mb-6 shadow-xl">
+                            <div class="diamond-inner">
+                                <div id="minutes" class="text-3xl font-bold text-offwhite font-jost">00</div>
+                            </div>
+                        </div>
+                        <p class="text-emerald font-jost font-bold uppercase tracking-widest text-sm">Minutes</p>
+                    </div>
+                    <div class="luxury-card p-10 corner-ornament">
+                        <div class="diamond mx-auto mb-6 shadow-xl">
+                            <div class="diamond-inner">
+                                <div id="seconds" class="text-3xl font-bold text-offwhite font-jost">00</div>
+                            </div>
+                        </div>
+                        <p class="text-emerald font-jost font-bold uppercase tracking-widest text-sm">Seconds</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details - Ticket Style -->
+    <section id="details" class="py-28 bg-emerald diagonal-left">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 reveal">
+                <div class="ribbon inline-block mb-6">
+                    <h2 class="font-philosopher text-4xl text-offwhite uppercase tracking-widest font-bold">Event Details</h2>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Akad -->
+                <div class="reveal">
+                    <div class="ticket-card p-10 mx-4">
+                        <div class="text-center mb-8">
+                            <div class="diamond mx-auto shadow-xl">
+                                <div class="diamond-inner">
+                                    <i class="fas fa-mosque text-2xl text-offwhite"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="font-philosopher text-3xl text-emerald text-center mb-8 uppercase tracking-wide font-bold">Akad Nikah</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4 pb-4 border-b-2 border-dashed border-emerald">
+                                <div class="w-12 h-12 bg-emerald flex items-center justify-center">
+                                    <i class="far fa-calendar text-xl text-gold"></i>
+                                </div>
+                                <div>
+                                    <p class="font-jost text-sm text-emerald opacity-70 uppercase tracking-wider">Date</p>
+                                    <p class="font-jost font-bold text-emerald">Sabtu, 15 Desember 2024</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 pb-4 border-b-2 border-dashed border-emerald">
+                                <div class="w-12 h-12 bg-emerald flex items-center justify-center">
+                                    <i class="far fa-clock text-xl text-gold"></i>
+                                </div>
+                                <div>
+                                    <p class="font-jost text-sm text-emerald opacity-70 uppercase tracking-wider">Time</p>
+                                    <p class="font-jost font-bold text-emerald">08:00 - 09:00 WIB</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-emerald flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-xl text-gold"></i>
+                                </div>
+                                <div>
+                                    <p class="font-jost text-sm text-emerald opacity-70 uppercase tracking-wider">Venue</p>
+                                    <p class="font-jost font-bold text-emerald mb-1">Masjid Agung</p>
+                                    <p class="font-jost text-sm text-emerald">Jl. Raya Pasarkemis No. 88, Tangerang</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resepsi -->
+                <div class="reveal">
+                    <div class="ticket-card p-10 mx-4">
+                        <div class="text-center mb-8">
+                            <div class="diamond mx-auto shadow-xl">
+                                <div class="diamond-inner">
+                                    <i class="fas fa-glass-cheers text-2xl text-offwhite"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="font-philosopher text-3xl text-emerald text-center mb-8 uppercase tracking-wide font-bold">Reception</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4 pb-4 border-b-2 border-dashed border-emerald">
+                                <div class="w-12 h-12 bg-emerald flex items-center justify-center">
+                                    <i class="far fa-calendar text-xl text-gold"></i>
+                                </div>
+                                <div>
+                                    <p class="font-jost text-sm text-emerald opacity-70 uppercase tracking-wider">Date</p>
+                                    <p class="font-jost font-bold text-emerald">Sabtu, 15 Desember 2024</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 pb-4 border-b-2 border-dashed border-emerald">
+                                <div class="w-12 h-12 bg-emerald flex items-center justify-center">
+                                    <i class="far fa-clock text-xl text-gold"></i>
+                                </div>
+                                <div>
+                                    <p class="font-jost text-sm text-emerald opacity-70 uppercase tracking-wider">Time</p>
+                                    <p class="font-jost font-bold text-emerald">11:00 - 15:00 WIB</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-emerald flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-home text-xl text-gold"></i>
+                                </div>
+                                <div>
+                                    <p class="font-jost text-sm text-emerald opacity-70 uppercase tracking-wider">Venue</p>
+                                    <p class="font-jost font-bold text-emerald mb-1">Grand Palace Hall</p>
+                                    <p class="font-jost text-sm text-emerald">Jl. Raya Pasarkemis No. 99, Tangerang</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-28 bg-offwhite">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 reveal">
+                <div class="ribbon inline-block mb-6">
+                    <h2 class="font-philosopher text-4xl text-offwhite uppercase tracking-widest font-bold">Gallery</h2>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-7xl mx-auto">
+                <div class="reveal corner-ornament overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400&h=400&fit=crop" 
+                         alt="Gallery 1" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(0)">
+                </div>
+                <div class="reveal corner-ornament overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=400&fit=crop" 
+                         alt="Gallery 2" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(1)">
+                </div>
+                <div class="reveal corner-ornament overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=400&h=400&fit=crop" 
+                         alt="Gallery 3" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(2)">
+                </div>
+                <div class="reveal corner-ornament overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400&h=400&fit=crop" 
+                         alt="Gallery 4" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(3)">
+                </div>
+                <div class="reveal corner-ornament overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&h=400&fit=crop" 
+                         alt="Gallery 5" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(4)">
+                </div>
+                <div class="reveal corner-ornament overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&h=400&fit=crop" 
+                         alt="Gallery 6" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(5)">
+                </div>
+                <div class="reveal corner-ornament overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1530047625168-4b29bfbbe1fc?w=400&h=400&fit=crop" 
+                         alt="Gallery 7" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(6)">
+                </div>
+                <div class="reveal corner-ornament overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?w=400&h=400&fit=crop" 
+                         alt="Gallery 8" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(7)">
+                </div>
+                <div class="reveal corner-ornament overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=400&h=400&fit=crop" 
+                         alt="Gallery 9" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(8)">
+                </div>
+                <div class="reveal corner-ornament overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1525258441167-d0d5e8f3c9f5?w=400&h=400&fit=crop" 
+                         alt="Gallery 10" 
+                         class="w-full h-full object-cover transform hover:scale-110 transition duration-500 cursor-pointer"
+                         onclick="openGallery(9)">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="py-28 bg-emerald diagonal-right">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 reveal">
+                <div class="ribbon inline-block mb-6">
+                    <h2 class="font-philosopher text-4xl text-offwhite uppercase tracking-widest font-bold">Location</h2>
+                </div>
+            </div>
+            
+            <div class="max-w-5xl mx-auto">
+                <div class="luxury-card corner-ornament overflow-hidden reveal">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0!2d106.5!3d-6.17!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTAnMTIuMCJTIDEwNsKwMzAnMDAuMCJF!5e0!3m2!1sen!2sid!4v1234567890" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                    <div class="p-14 text-center bg-white">
+                        <div class="diamond mx-auto mb-8 shadow-xl">
+                            <div class="diamond-inner">
+                                <i class="fas fa-map-marker-alt text-3xl text-offwhite"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-philosopher text-3xl text-emerald mb-4 uppercase tracking-wide font-bold">Grand Palace Hall</h3>
+                        <p class="text-emerald text-lg mb-10 font-jost">
+                            Jl. Raya Pasarkemis No. 99<br>
+                            Pasarkemis, Tangerang, Banten
+                        </p>
+                        <a href="https://maps.google.com/?q=Pasarkemis+Tangerang" 
+                           target="_blank"
+                           class="inline-block bg-emerald text-gold px-14 py-4 font-jost font-bold hover:shadow-2xl transform hover:scale-105 transition duration-300 uppercase tracking-widest border-2 border-gold shimmer-effect">
+                            <i class="fas fa-directions mr-2"></i>Get Directions
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="py-28 bg-offwhite">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto reveal">
+                <div class="text-center mb-16">
+                    <div class="ribbon inline-block mb-6">
+                        <h2 class="font-philosopher text-4xl text-offwhite uppercase tracking-widest font-bold">RSVP</h2>
+                    </div>
+                    <p class="text-emerald font-jost">Please Confirm Your Attendance</p>
+                </div>
+                
+                <form class="luxury-card corner-ornament p-12">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-emerald font-jost font-bold mb-3 uppercase tracking-wider text-sm">Full Name</label>
+                            <input type="text" 
+                                   placeholder="Your name" 
+                                   class="w-full px-6 py-4 border-2 border-emerald focus:border-gold outline-none transition font-jost">
+                        </div>
+                        <div>
+                            <label class="block text-emerald font-jost font-bold mb-3 uppercase tracking-wider text-sm">Email</label>
+                            <input type="email" 
+                                   placeholder="your@email.com" 
+                                   class="w-full px-6 py-4 border-2 border-emerald focus:border-gold outline-none transition font-jost">
+                        </div>
+                        <div>
+                            <label class="block text-emerald font-jost font-bold mb-3 uppercase tracking-wider text-sm">Attendance</label>
+                            <select class="w-full px-6 py-4 border-2 border-emerald focus:border-gold outline-none transition font-jost">
+                                <option>Select</option>
+                                <option>Will Attend</option>
+                                <option>Can't Attend</option>
+                                <option>Maybe</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-emerald font-jost font-bold mb-3 uppercase tracking-wider text-sm">Number of Guests</label>
+                            <input type="number" 
+                                   placeholder="How many?" 
+                                   class="w-full px-6 py-4 border-2 border-emerald focus:border-gold outline-none transition font-jost"
+                                   min="1">
+                        </div>
+                        <div>
+                            <label class="block text-emerald font-jost font-bold mb-3 uppercase tracking-wider text-sm">Message</label>
+                            <textarea placeholder="Your wishes..." 
+                                      rows="4" 
+                                      class="w-full px-6 py-4 border-2 border-emerald focus:border-gold outline-none transition resize-none font-jost"></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full bg-emerald text-gold px-8 py-5 font-jost font-bold hover:shadow-2xl transform hover:scale-105 transition duration-300 uppercase tracking-widest border-2 border-gold shimmer-effect">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Confirmation
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-emerald text-offwhite py-20 diagonal-both">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-10">
+                <div class="diamond mx-auto mb-8 shadow-2xl animate-float">
+                    <div class="diamond-inner">
+                        <i class="fas fa-heart text-4xl text-offwhite"></i>
+                    </div>
+                </div>
+                
+                <h3 class="font-alex text-6xl text-gold mb-4">Dimas & Putri</h3>
+                <p class="text-offwhite text-xl font-jost opacity-80">Thank You</p>
+                
+                <div class="flex justify-center gap-3 my-10">
+                    <div class="w-20 h-1 bg-gold"></div>
+                    <div class="w-2 h-1 bg-offwhite"></div>
+                    <div class="w-20 h-1 bg-gold"></div>
+                </div>
+                
+                <p class="text-offwhite font-jost opacity-70">For celebrating with us</p>
+            </div>
+            
+            <div class="flex justify-center gap-4 mb-10">
+                <a href="#" class="w-12 h-12 border-2 border-gold flex items-center justify-center hover:bg-gold hover:text-emerald transition transform hover:scale-110">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 border-2 border-gold flex items-center justify-center hover:bg-gold hover:text-emerald transition transform hover:scale-110">
+                    <i class="fab fa-facebook text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 border-2 border-gold flex items-center justify-center hover:bg-gold hover:text-emerald transition transform hover:scale-110">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+            </div>
+            
+            <p class="text-offwhite font-jost text-sm opacity-50">© 2024</p>
+        </div>
+    </footer>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="fixed inset-0 bg-emerald bg-opacity-95 z-50 hidden items-center justify-center">
+        <button onclick="closeGallery()" class="absolute top-8 right-8 text-gold text-5xl hover:text-offwhite transition z-10">
+            <i class="fas fa-times"></i>
+        </button>
+        <button onclick="prevImage()" class="absolute left-8 text-gold text-5xl hover:text-offwhite transition">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button onclick="nextImage()" class="absolute right-8 text-gold text-5xl hover:text-offwhite transition">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <img id="modalImage" src="" alt="Gallery" class="max-w-[90%] max-h-[90%] object-contain shadow-2xl corner-ornament">
+    </div>
+
+    <script>
+        // Opening Overlay
+        function openInvitation() {
+            document.getElementById('openingOverlay').classList.add('hidden');
+            document.getElementById('musicBtn').classList.remove('hidden');
+            playMusic();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Background Music
+        let isPlaying = false;
+        const music = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+
+        function playMusic() {
+            music.play();
+            isPlaying = true;
+            document.getElementById('musicBtn').classList.add('playing');
+            musicIcon.className = 'fas fa-music text-xl';
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                isPlaying = false;
+                document.getElementById('musicBtn').classList.remove('playing');
+                musicIcon.className = 'fas fa-volume-mute text-xl';
+            } else {
+                music.play();
+                isPlaying = true;
+                document.getElementById('musicBtn').classList.add('playing');
+                musicIcon.className = 'fas fa-music text-xl';
+            }
+        }
+
+        // Countdown Timer
+        const weddingDate = new Date('December 15, 2024 08:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Scroll Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal();
+
+        // Gallery Modal
+        const galleryImages = [
+            'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1530047625168-4b29bfbbe1fc?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1525258441167-d0d5e8f3c9f5?w=800&h=800&fit=crop'
+        ];
+
+        let currentImageIndex = 0;
+
+        function openGallery(index) {
+            currentImageIndex = index;
+            document.getElementById('modalImage').src = galleryImages[index];
+            document.getElementById('galleryModal').classList.remove('hidden');
+            document.getElementById('galleryModal').classList.add('flex');
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').classList.add('hidden');
+            document.getElementById('galleryModal').classList.remove('flex');
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            document.getElementById('modalImage').src = galleryImages[currentImageIndex];
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            document.getElementById('modalImage').src = galleryImages[currentImageIndex];
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeGallery();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            }
+        });
+
+        // Form Submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! Your confirmation has been received. 💚');
+            this.reset();
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

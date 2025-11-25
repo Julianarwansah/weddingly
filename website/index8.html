@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Artistic Wave</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            background: #fdfcfa;
+        }
+
+        .font-parisienne {
+            font-family: 'Parisienne', cursive;
+        }
+
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* COLOR PALETTE - ONLY 3 COLORS */
+        /* 1. Deep Purple/Lavender: #7c3aed */
+        /* 2. Ivory White: #fdfcfa */
+        /* 3. Soft Gray: #6b7280 */
+
+        .bg-purple {
+            background-color: #7c3aed;
+        }
+
+        .bg-ivory {
+            background-color: #fdfcfa;
+        }
+
+        .bg-gray {
+            background-color: #6b7280;
+        }
+
+        .text-purple {
+            color: #7c3aed;
+        }
+
+        .text-ivory {
+            color: #fdfcfa;
+        }
+
+        .text-gray {
+            color: #6b7280;
+        }
+
+        .border-purple {
+            border-color: #7c3aed;
+        }
+
+        .border-gray {
+            border-color: #6b7280;
+        }
+
+        /* Wave Shape */
+        .wave-top {
+            clip-path: ellipse(100% 55% at 48% 44%);
+        }
+
+        .wave-bottom {
+            clip-path: ellipse(100% 55% at 48% 56%);
+        }
+
+        /* Zigzag Layout */
+        .zigzag-left {
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+        }
+
+        .zigzag-right {
+            clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        /* Circular Section */
+        .circle-section {
+            border-radius: 50%;
+            aspect-ratio: 1;
+        }
+
+        /* Accordion Card */
+        .accordion-card {
+            background: white;
+            border-left: 6px solid #7c3aed;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.25);
+        }
+
+        /* Hexagon Container */
+        .hexagon-container {
+            position: relative;
+            width: 200px;
+            height: 230px;
+            margin: 0 auto;
+        }
+
+        .hexagon-img {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        /* Arc Text Path */
+        .arc-text {
+            text-align: center;
+        }
+
+        /* Gradient Overlay */
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.9) 0%, rgba(107, 114, 128, 0.9) 100%);
+        }
+
+        /* Stacked Cards */
+        .stacked-card {
+            position: relative;
+        }
+
+        .stacked-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            right: 10px;
+            height: 100%;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .stacked-card::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            right: 20px;
+            height: 100%;
+            background: rgba(124, 58, 237, 0.05);
+            border-radius: 20px;
+            z-index: -2;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(40px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-60px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from { 
+                opacity: 0; 
+                transform: translateX(60px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from { 
+                opacity: 0; 
+                transform: scale(0.7);
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotate {
+            from { 
+                transform: rotate(0deg);
+            }
+            to { 
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes wave {
+            0%, 100% { 
+                transform: translateY(0);
+            }
+            50% { 
+                transform: translateY(-20px);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .animate-slideInLeft {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .animate-slideInRight {
+            animation: slideInRight 1s ease-out forwards;
+        }
+
+        .animate-zoomIn {
+            animation: zoomIn 0.8s ease-out forwards;
+        }
+
+        .animate-rotate {
+            animation: rotate 20s linear infinite;
+        }
+
+        .animate-wave {
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Music Button */
+        .music-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7c3aed 0%, #6b21a8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(124, 58, 237, 0.6);
+        }
+
+        .music-btn.playing {
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fdfcfa;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #7c3aed 0%, #6b21a8 100%);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #6b21a8 0%, #581c87 100%);
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #7c3aed 0%, #6b21a8 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease;
+        }
+
+        .overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Decorative Elements */
+        .circle-deco {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(124, 58, 237, 0.2);
+        }
+
+        /* Blob Shape */
+        .blob {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background: rgba(124, 58, 237, 0.1);
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Opening Overlay -->
+    <div id="openingOverlay" class="overlay">
+        <div class="text-center animate-zoomIn">
+            <div class="bg-white rounded-full p-20 shadow-2xl max-w-lg mx-4 relative">
+                <!-- Decorative Circles -->
+                <div class="circle-deco w-96 h-96 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-rotate"></div>
+                <div class="circle-deco w-80 h-80 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style="animation: rotate 15s linear infinite reverse;"></div>
+                
+                <div class="relative z-10">
+                    <div class="w-24 h-24 mx-auto mb-6 bg-purple rounded-full flex items-center justify-center">
+                        <i class="fas fa-heart text-4xl text-white animate-wave"></i>
+                    </div>
+                    
+                    <h2 class="font-cinzel text-3xl text-purple mb-4 uppercase tracking-widest">Welcome</h2>
+                    <p class="text-gray text-lg mb-3">To Our Special Day</p>
+                    
+                    <div class="flex justify-center gap-2 my-8">
+                        <div class="w-16 h-1 bg-purple"></div>
+                        <div class="w-2 h-1 bg-gray"></div>
+                        <div class="w-16 h-1 bg-purple"></div>
+                    </div>
+                    
+                    <p class="text-gray mb-10">
+                        Kepada Yth.<br>
+                        <span class="font-semibold">Bapak/Ibu/Saudara/i</span>
+                    </p>
+                    
+                    <button onclick="openInvitation()" class="bg-purple text-white px-14 py-4 rounded-full font-quicksand font-bold hover:shadow-2xl transform hover:scale-105 transition duration-300 uppercase tracking-wider">
+                        <i class="fas fa-envelope-open mr-2"></i>Open
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Button -->
+    <div id="musicBtn" class="music-btn hidden" onclick="toggleMusic()">
+        <i id="musicIcon" class="fas fa-music text-2xl"></i>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Hero Section - Wave Shape -->
+    <section class="relative h-screen bg-purple wave-bottom flex items-center justify-center overflow-hidden">
+        <!-- Animated Blobs -->
+        <div class="blob w-96 h-96 absolute -top-20 -left-20 opacity-20 animate-wave"></div>
+        <div class="blob w-80 h-80 absolute -bottom-20 -right-20 opacity-20 animate-wave" style="animation-delay: 1s;"></div>
+
+        <div class="text-center px-4 z-10 animate-fadeInUp">
+            <div class="mb-8">
+                <div class="circle-deco w-64 h-64 mx-auto animate-rotate relative">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-rings-wedding text-6xl text-white opacity-30"></i>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-white text-2xl mb-6 font-quicksand uppercase tracking-widest opacity-90">Our Wedding Day</p>
+            
+            <h1 class="font-parisienne text-8xl md:text-9xl text-white mb-8">
+                Adrian & Luna
+            </h1>
+
+            <div class="flex justify-center items-center gap-4 mb-12">
+                <div class="w-20 h-0.5 bg-white"></div>
+                <p class="text-white text-2xl font-quicksand">15 • 12 • 2024</p>
+                <div class="w-20 h-0.5 bg-white"></div>
+            </div>
+
+            <a href="#couple" class="inline-block border-3 border-white text-white px-12 py-4 rounded-full font-quicksand font-semibold hover:bg-white hover:text-purple transition duration-300 uppercase tracking-wider">
+                Explore
+            </a>
+        </div>
+    </section>
+
+    <!-- Quote Section - Circular -->
+    <section class="py-32 bg-ivory relative">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto reveal">
+                <div class="stacked-card bg-white rounded-3xl p-16 text-center shadow-xl">
+                    <div class="w-20 h-20 mx-auto mb-8 bg-purple rounded-full flex items-center justify-center">
+                        <i class="fas fa-quote-right text-3xl text-white"></i>
+                    </div>
+                    
+                    <p class="text-3xl md:text-4xl text-gray italic mb-10 leading-relaxed font-cinzel">
+                        Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan-pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya.
+                    </p>
+                    
+                    <div class="flex justify-center gap-2 my-8">
+                        <div class="w-12 h-1 bg-purple"></div>
+                        <div class="w-2 h-1 bg-gray"></div>
+                        <div class="w-12 h-1 bg-purple"></div>
+                    </div>
+                    
+                    <p class="text-purple font-quicksand font-bold text-xl uppercase tracking-widest">QS. Ar-Rum : 21</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Couple Section - Hexagon -->
+    <section id="couple" class="py-32 bg-gray wave-top wave-bottom relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-parisienne text-7xl text-white mb-4">Meet Us</h2>
+                <p class="text-white text-xl font-quicksand opacity-80">The Happy Couple</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-20 max-w-6xl mx-auto items-center">
+                <!-- Groom -->
+                <div class="reveal text-center">
+                    <div class="hexagon-container mb-8">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" 
+                             alt="Groom" 
+                             class="hexagon-img w-full h-full object-cover shadow-2xl">
+                    </div>
+                    <div class="bg-white rounded-3xl p-10 shadow-xl stacked-card">
+                        <h3 class="font-parisienne text-6xl text-purple mb-3">Adrian Wijaya</h3>
+                        <p class="text-gray mb-6 font-quicksand uppercase tracking-wider text-sm">Groom</p>
+                        
+                        <div class="w-16 h-1 bg-purple mx-auto mb-6"></div>
+                        
+                        <p class="text-gray mb-3 font-quicksand text-sm uppercase tracking-wider">Son of</p>
+                        <p class="text-gray font-semibold text-lg mb-1">Bapak Wijaya Kusuma</p>
+                        <p class="text-purple text-lg mb-2">&</p>
+                        <p class="text-gray font-semibold text-lg mb-8">Ibu Maya Sari</p>
+                        
+                        <div class="flex justify-center gap-3">
+                            <a href="#" class="w-12 h-12 bg-purple text-white rounded-full flex items-center justify-center hover:bg-white hover:text-purple transition border-2 border-purple">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-purple text-white rounded-full flex items-center justify-center hover:bg-white hover:text-purple transition border-2 border-purple">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bride -->
+                <div class="reveal text-center">
+                    <div class="hexagon-container mb-8">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" 
+                             alt="Bride" 
+                             class="hexagon-img w-full h-full object-cover shadow-2xl">
+                    </div>
+                    <div class="bg-white rounded-3xl p-10 shadow-xl stacked-card">
+                        <h3 class="font-parisienne text-6xl text-purple mb-3">Luna Purnama</h3>
+                        <p class="text-gray mb-6 font-quicksand uppercase tracking-wider text-sm">Bride</p>
+                        
+                        <div class="w-16 h-1 bg-purple mx-auto mb-6"></div>
+                        
+                        <p class="text-gray mb-3 font-quicksand text-sm uppercase tracking-wider">Daughter of</p>
+                        <p class="text-gray font-semibold text-lg mb-1">Bapak Purnama Jaya</p>
+                        <p class="text-purple text-lg mb-2">&</p>
+                        <p class="text-gray font-semibold text-lg mb-8">Ibu Ratna Dewi</p>
+                        
+                        <div class="flex justify-center gap-3">
+                            <a href="#" class="w-12 h-12 bg-purple text-white rounded-full flex items-center justify-center hover:bg-white hover:text-purple transition border-2 border-purple">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-purple text-white rounded-full flex items-center justify-center hover:bg-white hover:text-purple transition border-2 border-purple">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section - Circular Badges -->
+    <section id="countdown" class="py-32 bg-ivory">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto text-center reveal">
+                <h2 class="font-parisienne text-7xl text-purple mb-4">Countdown</h2>
+                <p class="text-gray mb-16 text-xl font-quicksand">Until Our Big Day</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+                    <div class="reveal">
+                        <div class="circle-section w-40 h-40 mx-auto bg-purple flex items-center justify-center shadow-xl relative overflow-hidden">
+                            <div class="absolute inset-0 bg-white opacity-10 animate-rotate"></div>
+                            <div class="relative z-10 text-center">
+                                <div id="days" class="text-5xl font-bold text-white font-quicksand">00</div>
+                            </div>
+                        </div>
+                        <p class="text-gray font-quicksand font-bold uppercase tracking-wider text-sm mt-6">Days</p>
+                    </div>
+                    <div class="reveal">
+                        <div class="circle-section w-40 h-40 mx-auto bg-purple flex items-center justify-center shadow-xl relative overflow-hidden">
+                            <div class="absolute inset-0 bg-white opacity-10 animate-rotate" style="animation-delay: 0.5s;"></div>
+                            <div class="relative z-10 text-center">
+                                <div id="hours" class="text-5xl font-bold text-white font-quicksand">00</div>
+                            </div>
+                        </div>
+                        <p class="text-gray font-quicksand font-bold uppercase tracking-wider text-sm mt-6">Hours</p>
+                    </div>
+                    <div class="reveal">
+                        <div class="circle-section w-40 h-40 mx-auto bg-purple flex items-center justify-center shadow-xl relative overflow-hidden">
+                            <div class="absolute inset-0 bg-white opacity-10 animate-rotate" style="animation-delay: 1s;"></div>
+                            <div class="relative z-10 text-center">
+                                <div id="minutes" class="text-5xl font-bold text-white font-quicksand">00</div>
+                            </div>
+                        </div>
+                        <p class="text-gray font-quicksand font-bold uppercase tracking-wider text-sm mt-6">Minutes</p>
+                    </div>
+                    <div class="reveal">
+                        <div class="circle-section w-40 h-40 mx-auto bg-purple flex items-center justify-center shadow-xl relative overflow-hidden">
+                            <div class="absolute inset-0 bg-white opacity-10 animate-rotate" style="animation-delay: 1.5s;"></div>
+                            <div class="relative z-10 text-center">
+                                <div id="seconds" class="text-5xl font-bold text-white font-quicksand">00</div>
+                            </div>
+                        </div>
+                        <p class="text-gray font-quicksand font-bold uppercase tracking-wider text-sm mt-6">Seconds</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details - Accordion Style -->
+    <section class="py-32 bg-purple wave-top wave-bottom">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-parisienne text-7xl text-white mb-4">Event Details</h2>
+                <p class="text-white text-xl font-quicksand opacity-80">When & Where</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto space-y-8">
+                <!-- Akad -->
+                <div class="reveal">
+                    <div class="accordion-card rounded-2xl p-10 bg-white">
+                        <div class="flex items-start gap-8">
+                            <div class="flex-shrink-0">
+                                <div class="w-20 h-20 bg-purple rounded-full flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-mosque text-3xl text-white"></i>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-cinzel text-3xl text-purple mb-6 uppercase tracking-wide">Akad Nikah</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center gap-4">
+                                        <i class="far fa-calendar text-purple text-xl"></i>
+                                        <p class="font-quicksand text-gray font-semibold">Sabtu, 15 Desember 2024</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <i class="far fa-clock text-purple text-xl"></i>
+                                        <p class="font-quicksand text-gray font-semibold">08:00 - 09:00 WIB</p>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <i class="fas fa-map-marker-alt text-purple text-xl mt-1"></i>
+                                        <div>
+                                            <p class="font-quicksand text-gray font-bold mb-1">Masjid Agung Al-Azhar</p>
+                                            <p class="font-quicksand text-gray text-sm">Jl. Raya Pasarkemis No. 88, Pasarkemis, Tangerang</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resepsi -->
+                <div class="reveal">
+                    <div class="accordion-card rounded-2xl p-10 bg-white">
+                        <div class="flex items-start gap-8">
+                            <div class="flex-shrink-0">
+                                <div class="w-20 h-20 bg-purple rounded-full flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-glass-cheers text-3xl text-white"></i>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-cinzel text-3xl text-purple mb-6 uppercase tracking-wide">Resepsi Pernikahan</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center gap-4">
+                                        <i class="far fa-calendar text-purple text-xl"></i>
+                                        <p class="font-quicksand text-gray font-semibold">Sabtu, 15 Desember 2024</p>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <i class="far fa-clock text-purple text-xl"></i>
+                                        <p class="font-quicksand text-gray font-semibold">11:00 - 15:00 WIB</p>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <i class="fas fa-home text-purple text-xl mt-1"></i>
+                                        <div>
+                                            <p class="font-quicksand text-gray font-bold mb-1">Royal Ballroom Hotel</p>
+                                            <p class="font-quicksand text-gray text-sm">Jl. Raya Pasarkemis No. 99, Pasarkemis, Tangerang</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section - Circular Masonry -->
+    <section class="py-32 bg-ivory">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-parisienne text-7xl text-purple mb-4">Gallery</h2>
+                <p class="text-gray text-xl font-quicksand">Our Sweet Moments</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400&h=400&fit=crop" 
+                         alt="Gallery 1" 
+                         class="w-full aspect-square object-cover rounded-full shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer border-4 border-purple"
+                         onclick="openGallery(0)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=400&fit=crop" 
+                         alt="Gallery 2" 
+                         class="w-full aspect-square object-cover rounded-full shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer border-4 border-purple"
+                         onclick="openGallery(1)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=400&h=400&fit=crop" 
+                         alt="Gallery 3" 
+                         class="w-full aspect-square object-cover rounded-full shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer border-4 border-purple"
+                         onclick="openGallery(2)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400&h=400&fit=crop" 
+                         alt="Gallery 4" 
+                         class="w-full aspect-square object-cover rounded-full shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer border-4 border-purple"
+                         onclick="openGallery(3)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&h=400&fit=crop" 
+                         alt="Gallery 5" 
+                         class="w-full aspect-square object-cover rounded-full shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer border-4 border-purple"
+                         onclick="openGallery(4)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&h=400&fit=crop" 
+                         alt="Gallery 6" 
+                         class="w-full aspect-square object-cover rounded-full shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer border-4 border-purple"
+                         onclick="openGallery(5)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1530047625168-4b29bfbbe1fc?w=400&h=400&fit=crop" 
+                         alt="Gallery 7" 
+                         class="w-full aspect-square object-cover rounded-full shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer border-4 border-purple"
+                         onclick="openGallery(6)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?w=400&h=400&fit=crop" 
+                         alt="Gallery 8" 
+                         class="w-full aspect-square object-cover rounded-full shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer border-4 border-purple"
+                         onclick="openGallery(7)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=400&h=400&fit=crop" 
+                         alt="Gallery 9" 
+                         class="w-full aspect-square object-cover rounded-full shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer border-4 border-purple"
+                         onclick="openGallery(8)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1525258441167-d0d5e8f3c9f5?w=400&h=400&fit=crop" 
+                         alt="Gallery 10" 
+                         class="w-full aspect-square object-cover rounded-full shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer border-4 border-purple"
+                         onclick="openGallery(9)">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="py-32 bg-gray wave-top wave-bottom">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-parisienne text-7xl text-white mb-4">Location</h2>
+                <p class="text-white text-xl font-quicksand opacity-80">Find Us Here</p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto">
+                <div class="bg-white rounded-3xl overflow-hidden shadow-2xl reveal stacked-card">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0!2d106.5!3d-6.17!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTAnMTIuMCJTIDEwNsKwMzAnMDAuMCJF!5e0!3m2!1sen!2sid!4v1234567890" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                    <div class="p-14 text-center">
+                        <div class="w-20 h-20 mx-auto mb-8 bg-purple rounded-full flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt text-3xl text-white"></i>
+                        </div>
+                        <h3 class="font-cinzel text-3xl text-purple mb-4 uppercase tracking-wide">Royal Ballroom Hotel</h3>
+                        <p class="text-gray text-lg mb-10 font-quicksand">
+                            Jl. Raya Pasarkemis No. 99<br>
+                            Pasarkemis, Tangerang, Banten
+                        </p>
+                        <a href="https://maps.google.com/?q=Pasarkemis+Tangerang" 
+                           target="_blank"
+                           class="inline-block bg-purple text-white px-14 py-4 rounded-full font-quicksand font-bold hover:shadow-2xl transform hover:scale-105 transition duration-300 uppercase tracking-wider">
+                            <i class="fas fa-directions mr-2"></i>Open Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="py-32 bg-ivory">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto reveal">
+                <div class="text-center mb-16">
+                    <h2 class="font-parisienne text-7xl text-purple mb-4">RSVP</h2>
+                    <p class="text-gray text-xl font-quicksand">Please Confirm Your Presence</p>
+                </div>
+                
+                <form class="stacked-card bg-white rounded-3xl p-12 shadow-xl">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-gray font-quicksand font-bold mb-3 uppercase tracking-wider text-sm">Full Name</label>
+                            <input type="text" 
+                                   placeholder="Your name" 
+                                   class="w-full px-6 py-4 rounded-xl border-2 border-purple focus:border-gray outline-none transition font-quicksand">
+                        </div>
+                        <div>
+                            <label class="block text-gray font-quicksand font-bold mb-3 uppercase tracking-wider text-sm">Email</label>
+                            <input type="email" 
+                                   placeholder="your@email.com" 
+                                   class="w-full px-6 py-4 rounded-xl border-2 border-purple focus:border-gray outline-none transition font-quicksand">
+                        </div>
+                        <div>
+                            <label class="block text-gray font-quicksand font-bold mb-3 uppercase tracking-wider text-sm">Attendance</label>
+                            <select class="w-full px-6 py-4 rounded-xl border-2 border-purple focus:border-gray outline-none transition font-quicksand">
+                                <option>Select</option>
+                                <option>Yes, I Will Attend</option>
+                                <option>No, I Can't Attend</option>
+                                <option>Maybe</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray font-quicksand font-bold mb-3 uppercase tracking-wider text-sm">Number of Guests</label>
+                            <input type="number" 
+                                   placeholder="How many guests?" 
+                                   class="w-full px-6 py-4 rounded-xl border-2 border-purple focus:border-gray outline-none transition font-quicksand"
+                                   min="1">
+                        </div>
+                        <div>
+                            <label class="block text-gray font-quicksand font-bold mb-3 uppercase tracking-wider text-sm">Message & Wishes</label>
+                            <textarea placeholder="Write your wishes..." 
+                                      rows="4" 
+                                      class="w-full px-6 py-4 rounded-xl border-2 border-purple focus:border-gray outline-none transition resize-none font-quicksand"></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full bg-purple text-white px-8 py-5 rounded-full font-quicksand font-bold hover:shadow-2xl transform hover:scale-105 transition duration-300 uppercase tracking-wider text-lg">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Confirmation
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-purple text-white py-20 wave-top">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-10">
+                <div class="circle-deco w-32 h-32 mx-auto mb-8 flex items-center justify-center">
+                    <i class="fas fa-heart text-5xl text-white animate-wave"></i>
+                </div>
+                
+                <h3 class="font-parisienne text-6xl mb-4">Adrian & Luna</h3>
+                <p class="text-white text-xl font-quicksand opacity-80">Thank You</p>
+                
+                <div class="flex justify-center gap-2 my-10">
+                    <div class="w-16 h-1 bg-white"></div>
+                    <div class="w-2 h-1 bg-white opacity-50"></div>
+                    <div class="w-16 h-1 bg-white"></div>
+                </div>
+                
+                <p class="text-white font-quicksand opacity-70">For celebrating our special day with us</p>
+            </div>
+            
+            <div class="flex justify-center gap-4 mb-10">
+                <a href="#" class="w-14 h-14 border-2 border-white rounded-full flex items-center justify-center hover:bg-white hover:text-purple transition transform hover:scale-110">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="w-14 h-14 border-2 border-white rounded-full flex items-center justify-center hover:bg-white hover:text-purple transition transform hover:scale-110">
+                    <i class="fab fa-facebook text-xl"></i>
+                </a>
+                <a href="#" class="w-14 h-14 border-2 border-white rounded-full flex items-center justify-center hover:bg-white hover:text-purple transition transform hover:scale-110">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+            </div>
+            
+            <p class="text-white font-quicksand text-sm opacity-50">© 2024</p>
+        </div>
+    </footer>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="fixed inset-0 bg-purple bg-opacity-95 z-50 hidden items-center justify-center">
+        <button onclick="closeGallery()" class="absolute top-8 right-8 text-white text-5xl hover:opacity-70 transition z-10">
+            <i class="fas fa-times"></i>
+        </button>
+        <button onclick="prevImage()" class="absolute left-8 text-white text-5xl hover:opacity-70 transition">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button onclick="nextImage()" class="absolute right-8 text-white text-5xl hover:opacity-70 transition">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <img id="modalImage" src="" alt="Gallery" class="max-w-[90%] max-h-[90%] object-contain rounded-3xl shadow-2xl">
+    </div>
+
+    <script>
+        // Opening Overlay
+        function openInvitation() {
+            document.getElementById('openingOverlay').classList.add('hidden');
+            document.getElementById('musicBtn').classList.remove('hidden');
+            playMusic();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Background Music
+        let isPlaying = false;
+        const music = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+
+        function playMusic() {
+            music.play();
+            isPlaying = true;
+            document.getElementById('musicBtn').classList.add('playing');
+            musicIcon.className = 'fas fa-music text-2xl';
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                isPlaying = false;
+                document.getElementById('musicBtn').classList.remove('playing');
+                musicIcon.className = 'fas fa-volume-mute text-2xl';
+            } else {
+                music.play();
+                isPlaying = true;
+                document.getElementById('musicBtn').classList.add('playing');
+                musicIcon.className = 'fas fa-music text-2xl';
+            }
+        }
+
+        // Countdown Timer
+        const weddingDate = new Date('December 15, 2024 08:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Scroll Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal();
+
+        // Gallery Modal
+        const galleryImages = [
+            'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1530047625168-4b29bfbbe1fc?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1525258441167-d0d5e8f3c9f5?w=800&h=800&fit=crop'
+        ];
+
+        let currentImageIndex = 0;
+
+        function openGallery(index) {
+            currentImageIndex = index;
+            document.getElementById('modalImage').src = galleryImages[index];
+            document.getElementById('galleryModal').classList.remove('hidden');
+            document.getElementById('galleryModal').classList.add('flex');
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').classList.add('hidden');
+            document.getElementById('galleryModal').classList.remove('flex');
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            document.getElementById('modalImage').src = galleryImages[currentImageIndex];
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            document.getElementById('modalImage').src = galleryImages[currentImageIndex];
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeGallery();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            }
+        });
+
+        // Form Submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! Your confirmation has been received. 💜');
+            this.reset();
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

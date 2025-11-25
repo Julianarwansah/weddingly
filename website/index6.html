@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Modern Magazine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Italiana&family=Inter:wght@300;400;500;600;700&family=Satisfy&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background: #f8f6f2;
+        }
+
+        .font-satisfy {
+            font-family: 'Satisfy', cursive;
+        }
+
+        .font-italiana {
+            font-family: 'Italiana', serif;
+        }
+
+        /* COLOR PALETTE - ONLY 3 COLORS */
+        /* 1. Deep Teal/Tosca: #14b8a6 */
+        /* 2. Warm Cream: #f8f6f2 */
+        /* 3. Charcoal Gray: #374151 */
+
+        .bg-teal {
+            background-color: #14b8a6;
+        }
+
+        .bg-cream {
+            background-color: #f8f6f2;
+        }
+
+        .bg-charcoal {
+            background-color: #374151;
+        }
+
+        .text-teal {
+            color: #14b8a6;
+        }
+
+        .text-cream {
+            color: #f8f6f2;
+        }
+
+        .text-charcoal {
+            color: #374151;
+        }
+
+        .border-teal {
+            border-color: #14b8a6;
+        }
+
+        .border-charcoal {
+            border-color: #374151;
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Asymmetric Layout */
+        .asymmetric-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .asymmetric-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Overlapping Sections */
+        .overlap-top {
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Magazine Card */
+        .magazine-card {
+            background: white;
+            box-shadow: 0 10px 40px rgba(20, 184, 166, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .magazine-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(20, 184, 166, 0.2);
+        }
+
+        /* Diagonal Section */
+        .diagonal-section {
+            clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 95%);
+        }
+
+        /* Image Mask */
+        .image-circle-mask {
+            clip-path: circle(50% at 50% 50%);
+        }
+
+        .image-diagonal-mask {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        /* Floating Label */
+        .floating-label {
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            background: #14b8a6;
+            color: white;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Line Accent */
+        .line-accent {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .line-accent::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: #14b8a6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-50px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from { 
+                opacity: 0; 
+                transform: translateX(50px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from { 
+                opacity: 0; 
+                transform: scale(0.9);
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { 
+                transform: translateY(0);
+            }
+            50% { 
+                transform: translateY(-15px);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .animate-fadeInLeft {
+            animation: fadeInLeft 1s ease-out forwards;
+        }
+
+        .animate-fadeInRight {
+            animation: fadeInRight 1s ease-out forwards;
+        }
+
+        .animate-scaleIn {
+            animation: scaleIn 0.8s ease-out forwards;
+        }
+
+        .animate-bounce {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Music Button */
+        .music-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background-color: #14b8a6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 6px 25px rgba(20, 184, 166, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 35px rgba(20, 184, 166, 0.6);
+        }
+
+        .music-btn.playing {
+            animation: bounce 1.5s ease-in-out infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f8f6f2;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #14b8a6;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0f9688;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease;
+        }
+
+        .overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Decorative Shapes */
+        .deco-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: #14b8a6;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        /* Number Badge */
+        .number-badge {
+            width: 60px;
+            height: 60px;
+            background: #14b8a6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Opening Overlay -->
+    <div id="openingOverlay" class="overlay">
+        <div class="text-center animate-scaleIn">
+            <div class="bg-white rounded-none p-16 shadow-2xl max-w-lg mx-4">
+                <!-- Modern Lines -->
+                <div class="flex justify-center gap-2 mb-8">
+                    <div class="w-1 h-20 bg-teal"></div>
+                    <div class="w-1 h-20 bg-charcoal"></div>
+                    <div class="w-1 h-20 bg-teal"></div>
+                </div>
+                
+                <h2 class="font-italiana text-4xl text-charcoal mb-4 uppercase tracking-widest">Welcome</h2>
+                <p class="text-charcoal text-lg mb-3 font-inter">You're Invited</p>
+                
+                <div class="w-20 h-0.5 bg-teal mx-auto my-8"></div>
+                
+                <p class="text-charcoal mb-10 font-inter">
+                    Kepada Yth.<br>
+                    <span class="font-semibold">Bapak/Ibu/Saudara/i</span>
+                </p>
+                
+                <button onclick="openInvitation()" class="bg-teal text-white px-14 py-4 font-inter font-semibold hover:shadow-2xl transform hover:scale-105 transition duration-300 text-lg uppercase tracking-widest">
+                    Open Invitation
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Button -->
+    <div id="musicBtn" class="music-btn hidden" onclick="toggleMusic()">
+        <i id="musicIcon" class="fas fa-music text-xl"></i>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Hero Section - Full Screen with Overlay -->
+    <section class="relative min-h-screen flex items-center justify-center bg-charcoal">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&h=1080&fit=crop" 
+                 alt="Hero" 
+                 class="w-full h-full object-cover opacity-40">
+        </div>
+
+        <!-- Decorative Circles -->
+        <div class="deco-circle w-96 h-96 -top-48 -left-48"></div>
+        <div class="deco-circle w-64 h-64 -bottom-32 -right-32"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 animate-fadeInUp">
+            <div class="inline-block mb-8">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-0.5 bg-teal"></div>
+                    <i class="fas fa-heart text-3xl text-teal"></i>
+                    <div class="w-16 h-0.5 bg-teal"></div>
+                </div>
+            </div>
+
+            <p class="text-cream text-xl mb-6 font-inter uppercase tracking-widest">Wedding Celebration</p>
+            
+            <h1 class="font-satisfy text-8xl md:text-9xl text-cream mb-8">
+                Reza & Intan
+            </h1>
+
+            <p class="text-cream text-2xl mb-12 font-inter font-light">
+                15 . 12 . 2024
+            </p>
+
+            <a href="#story" class="inline-block text-cream border-2 border-cream px-10 py-4 font-inter font-semibold hover:bg-cream hover:text-charcoal transition duration-300 uppercase tracking-widest">
+                Discover Our Story
+            </a>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-3xl text-teal"></i>
+        </div>
+    </section>
+
+    <!-- Story Section - Asymmetric -->
+    <section id="story" class="py-24 bg-cream">
+        <div class="container mx-auto px-4">
+            <div class="asymmetric-grid max-w-6xl mx-auto items-center">
+                <!-- Image Side -->
+                <div class="reveal animate-fadeInLeft">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&h=800&fit=crop" 
+                             alt="Couple" 
+                             class="w-full h-[600px] object-cover image-diagonal-mask shadow-2xl">
+                        <div class="floating-label">Our Story</div>
+                    </div>
+                </div>
+
+                <!-- Text Side -->
+                <div class="reveal animate-fadeInRight">
+                    <div class="line-accent">
+                        <h2 class="font-italiana text-5xl text-charcoal mb-6 uppercase tracking-wider">How We Met</h2>
+                        <p class="text-charcoal text-lg mb-6 font-inter leading-relaxed opacity-80">
+                            Pertemuan kami dimulai pada musim semi 2020, ketika takdir mempertemukan kami di sebuah kafe kecil di sudut kota. Dari percakapan singkat tentang buku favorit, berkembang menjadi diskusi panjang tentang mimpi dan harapan.
+                        </p>
+                        <p class="text-charcoal text-lg mb-8 font-inter leading-relaxed opacity-80">
+                            Setiap momen bersama menjadi kenangan indah yang membawa kami pada keputusan untuk melangkah bersama menuju jenjang pernikahan.
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-0.5 bg-teal"></div>
+                            <p class="text-teal font-inter font-semibold uppercase tracking-wider">Love Story</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Couple Section - Magazine Style -->
+    <section class="py-24 bg-white diagonal-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 reveal">
+                <div class="inline-block mb-4">
+                    <div class="number-badge">01</div>
+                </div>
+                <h2 class="font-italiana text-5xl text-charcoal mb-3 uppercase tracking-wider">Meet The Couple</h2>
+                <div class="w-24 h-0.5 bg-teal mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-16 max-w-6xl mx-auto">
+                <!-- Groom -->
+                <div class="reveal">
+                    <div class="magazine-card overflow-hidden relative">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-teal"></div>
+                        <div class="p-8">
+                            <div class="mb-8">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop" 
+                                     alt="Groom" 
+                                     class="w-full h-[500px] object-cover">
+                            </div>
+                            <div class="text-center">
+                                <p class="text-teal font-inter text-sm uppercase tracking-widest mb-3">The Groom</p>
+                                <h3 class="font-satisfy text-5xl text-charcoal mb-4">Reza Firmansyah</h3>
+                                <div class="w-16 h-0.5 bg-teal mx-auto mb-6"></div>
+                                <p class="text-charcoal mb-2 font-inter text-sm uppercase tracking-wider opacity-60">Son of</p>
+                                <p class="text-charcoal font-semibold text-lg mb-1">Bapak Firmansyah</p>
+                                <p class="text-teal text-sm mb-2">&</p>
+                                <p class="text-charcoal font-semibold text-lg mb-8">Ibu Ratna Sari</p>
+                                <div class="flex justify-center gap-3">
+                                    <a href="#" class="w-10 h-10 border-2 border-teal text-teal flex items-center justify-center hover:bg-teal hover:text-white transition">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 border-2 border-teal text-teal flex items-center justify-center hover:bg-teal hover:text-white transition">
+                                        <i class="fab fa-facebook"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bride -->
+                <div class="reveal">
+                    <div class="magazine-card overflow-hidden relative">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-teal"></div>
+                        <div class="p-8">
+                            <div class="mb-8">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=600&fit=crop" 
+                                     alt="Bride" 
+                                     class="w-full h-[500px] object-cover">
+                            </div>
+                            <div class="text-center">
+                                <p class="text-teal font-inter text-sm uppercase tracking-widest mb-3">The Bride</p>
+                                <h3 class="font-satisfy text-5xl text-charcoal mb-4">Intan Permata</h3>
+                                <div class="w-16 h-0.5 bg-teal mx-auto mb-6"></div>
+                                <p class="text-charcoal mb-2 font-inter text-sm uppercase tracking-wider opacity-60">Daughter of</p>
+                                <p class="text-charcoal font-semibold text-lg mb-1">Bapak Permata Hadi</p>
+                                <p class="text-teal text-sm mb-2">&</p>
+                                <p class="text-charcoal font-semibold text-lg mb-8">Ibu Indah Sari</p>
+                                <div class="flex justify-center gap-3">
+                                    <a href="#" class="w-10 h-10 border-2 border-teal text-teal flex items-center justify-center hover:bg-teal hover:text-white transition">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 border-2 border-teal text-teal flex items-center justify-center hover:bg-teal hover:text-white transition">
+                                        <i class="fab fa-facebook"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section - Overlapping -->
+    <section id="countdown" class="bg-cream pb-24 overlap-top">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+                <div class="magazine-card p-12 reveal">
+                    <div class="text-center mb-12">
+                        <div class="inline-block mb-4">
+                            <div class="number-badge">02</div>
+                        </div>
+                        <h2 class="font-italiana text-4xl text-charcoal mb-3 uppercase tracking-wider">Save The Date</h2>
+                        <div class="w-24 h-0.5 bg-teal mx-auto"></div>
+                    </div>
+                    
+                    <div class="grid grid-cols-4 gap-8">
+                        <div class="text-center">
+                            <div class="w-24 h-24 mx-auto border-4 border-teal rounded-full flex items-center justify-center mb-4">
+                                <div id="days" class="text-3xl font-bold text-charcoal font-inter">00</div>
+                            </div>
+                            <p class="text-charcoal font-inter font-semibold uppercase tracking-wider text-sm">Days</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-24 h-24 mx-auto border-4 border-teal rounded-full flex items-center justify-center mb-4">
+                                <div id="hours" class="text-3xl font-bold text-charcoal font-inter">00</div>
+                            </div>
+                            <p class="text-charcoal font-inter font-semibold uppercase tracking-wider text-sm">Hours</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-24 h-24 mx-auto border-4 border-teal rounded-full flex items-center justify-center mb-4">
+                                <div id="minutes" class="text-3xl font-bold text-charcoal font-inter">00</div>
+                            </div>
+                            <p class="text-charcoal font-inter font-semibold uppercase tracking-wider text-sm">Minutes</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-24 h-24 mx-auto border-4 border-teal rounded-full flex items-center justify-center mb-4">
+                                <div id="seconds" class="text-3xl font-bold text-charcoal font-inter">00</div>
+                            </div>
+                            <p class="text-charcoal font-inter font-semibold uppercase tracking-wider text-sm">Seconds</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details - Side by Side Cards -->
+    <section class="py-24 bg-charcoal">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 reveal">
+                <div class="inline-block mb-4">
+                    <div class="number-badge">03</div>
+                </div>
+                <h2 class="font-italiana text-5xl text-cream mb-3 uppercase tracking-wider">Event Details</h2>
+                <div class="w-24 h-0.5 bg-teal mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Akad -->
+                <div class="reveal">
+                    <div class="magazine-card p-10 relative">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-teal"></div>
+                        <div class="mb-8">
+                            <p class="text-teal font-inter text-sm uppercase tracking-widest mb-2">Ceremony</p>
+                            <h3 class="font-italiana text-3xl text-charcoal uppercase tracking-wide">Akad Nikah</h3>
+                        </div>
+                        <div class="space-y-5">
+                            <div class="flex items-center gap-4 pb-5 border-b border-gray-200">
+                                <i class="far fa-calendar text-2xl text-teal"></i>
+                                <div>
+                                    <p class="font-inter text-sm text-charcoal opacity-60 uppercase tracking-wider">Date</p>
+                                    <p class="font-inter font-semibold text-charcoal">Sabtu, 15 Desember 2024</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 pb-5 border-b border-gray-200">
+                                <i class="far fa-clock text-2xl text-teal"></i>
+                                <div>
+                                    <p class="font-inter text-sm text-charcoal opacity-60 uppercase tracking-wider">Time</p>
+                                    <p class="font-inter font-semibold text-charcoal">08:00 - 09:00 WIB</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i class="fas fa-map-marker-alt text-2xl text-teal mt-1"></i>
+                                <div>
+                                    <p class="font-inter text-sm text-charcoal opacity-60 uppercase tracking-wider">Venue</p>
+                                    <p class="font-inter font-semibold text-charcoal mb-1">Masjid Raya</p>
+                                    <p class="font-inter text-sm text-charcoal opacity-70">Jl. Raya Pasarkemis No. 88, Tangerang</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resepsi -->
+                <div class="reveal">
+                    <div class="magazine-card p-10 relative">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-teal"></div>
+                        <div class="mb-8">
+                            <p class="text-teal font-inter text-sm uppercase tracking-widest mb-2">Reception</p>
+                            <h3 class="font-italiana text-3xl text-charcoal uppercase tracking-wide">Wedding Party</h3>
+                        </div>
+                        <div class="space-y-5">
+                            <div class="flex items-center gap-4 pb-5 border-b border-gray-200">
+                                <i class="far fa-calendar text-2xl text-teal"></i>
+                                <div>
+                                    <p class="font-inter text-sm text-charcoal opacity-60 uppercase tracking-wider">Date</p>
+                                    <p class="font-inter font-semibold text-charcoal">Sabtu, 15 Desember 2024</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 pb-5 border-b border-gray-200">
+                                <i class="far fa-clock text-2xl text-teal"></i>
+                                <div>
+                                    <p class="font-inter text-sm text-charcoal opacity-60 uppercase tracking-wider">Time</p>
+                                    <p class="font-inter font-semibold text-charcoal">11:00 - 15:00 WIB</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i class="fas fa-home text-2xl text-teal mt-1"></i>
+                                <div>
+                                    <p class="font-inter text-sm text-charcoal opacity-60 uppercase tracking-wider">Venue</p>
+                                    <p class="font-inter font-semibold text-charcoal mb-1">Grand Ballroom</p>
+                                    <p class="font-inter text-sm text-charcoal opacity-70">Jl. Raya Pasarkemis No. 99, Tangerang</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section - Masonry Style -->
+    <section class="py-24 bg-cream">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 reveal">
+                <div class="inline-block mb-4">
+                    <div class="number-badge">04</div>
+                </div>
+                <h2 class="font-italiana text-5xl text-charcoal mb-3 uppercase tracking-wider">Gallery</h2>
+                <div class="w-24 h-0.5 bg-teal mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-7xl mx-auto">
+                <div class="reveal col-span-2 row-span-2">
+                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&h=600&fit=crop" 
+                         alt="Gallery 1" 
+                         class="w-full h-full object-cover shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer"
+                         onclick="openGallery(0)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=300&h=300&fit=crop" 
+                         alt="Gallery 2" 
+                         class="w-full h-full object-cover shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer"
+                         onclick="openGallery(1)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=300&h=300&fit=crop" 
+                         alt="Gallery 3" 
+                         class="w-full h-full object-cover shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer"
+                         onclick="openGallery(2)">
+                </div>
+                <div class="reveal row-span-2">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=300&h=600&fit=crop" 
+                         alt="Gallery 4" 
+                         class="w-full h-full object-cover shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer"
+                         onclick="openGallery(3)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=300&h=300&fit=crop" 
+                         alt="Gallery 5" 
+                         class="w-full h-full object-cover shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer"
+                         onclick="openGallery(4)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=300&h=300&fit=crop" 
+                         alt="Gallery 6" 
+                         class="w-full h-full object-cover shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer"
+                         onclick="openGallery(5)">
+                </div>
+                <div class="reveal col-span-2">
+                    <img src="https://images.unsplash.com/photo-1530047625168-4b29bfbbe1fc?w=600&h=300&fit=crop" 
+                         alt="Gallery 7" 
+                         class="w-full h-full object-cover shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer"
+                         onclick="openGallery(6)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?w=300&h=300&fit=crop" 
+                         alt="Gallery 8" 
+                         class="w-full h-full object-cover shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer"
+                         onclick="openGallery(7)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=300&h=300&fit=crop" 
+                         alt="Gallery 9" 
+                         class="w-full h-full object-cover shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer"
+                         onclick="openGallery(8)">
+                </div>
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1525258441167-d0d5e8f3c9f5?w=300&h=300&fit=crop" 
+                         alt="Gallery 10" 
+                         class="w-full h-full object-cover shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer"
+                         onclick="openGallery(9)">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 reveal">
+                <div class="inline-block mb-4">
+                    <div class="number-badge">05</div>
+                </div>
+                <h2 class="font-italiana text-5xl text-charcoal mb-3 uppercase tracking-wider">Location</h2>
+                <div class="w-24 h-0.5 bg-teal mx-auto"></div>
+            </div>
+            
+            <div class="max-w-5xl mx-auto">
+                <div class="magazine-card overflow-hidden reveal">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0!2d106.5!3d-6.17!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTAnMTIuMCJTIDEwNsKwMzAnMDAuMCJF!5e0!3m2!1sen!2sid!4v1234567890" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                    <div class="p-12 text-center">
+                        <h3 class="font-italiana text-3xl text-charcoal mb-3 uppercase tracking-wide">Grand Ballroom</h3>
+                        <p class="text-charcoal text-lg mb-8 font-inter opacity-70">
+                            Jl. Raya Pasarkemis No. 99<br>
+                            Pasarkemis, Tangerang, Banten
+                        </p>
+                        <a href="https://maps.google.com/?q=Pasarkemis+Tangerang" 
+                           target="_blank"
+                           class="inline-block bg-teal text-white px-12 py-4 font-inter font-semibold hover:shadow-2xl transform hover:scale-105 transition duration-300 uppercase tracking-widest">
+                            <i class="fas fa-directions mr-2"></i>Get Directions
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="py-24 bg-cream">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto reveal">
+                <div class="text-center mb-16">
+                    <div class="inline-block mb-4">
+                        <div class="number-badge">06</div>
+                    </div>
+                    <h2 class="font-italiana text-5xl text-charcoal mb-3 uppercase tracking-wider">RSVP</h2>
+                    <div class="w-24 h-0.5 bg-teal mx-auto mb-6"></div>
+                    <p class="text-charcoal font-inter opacity-70">Please confirm your attendance</p>
+                </div>
+                
+                <form class="magazine-card p-12">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-charcoal font-inter font-semibold mb-3 uppercase tracking-wider text-sm">Full Name</label>
+                            <input type="text" 
+                                   placeholder="Your name" 
+                                   class="w-full px-6 py-4 border-2 border-gray-200 focus:border-teal outline-none transition font-inter">
+                        </div>
+                        <div>
+                            <label class="block text-charcoal font-inter font-semibold mb-3 uppercase tracking-wider text-sm">Email</label>
+                            <input type="email" 
+                                   placeholder="your@email.com" 
+                                   class="w-full px-6 py-4 border-2 border-gray-200 focus:border-teal outline-none transition font-inter">
+                        </div>
+                        <div>
+                            <label class="block text-charcoal font-inter font-semibold mb-3 uppercase tracking-wider text-sm">Attendance</label>
+                            <select class="w-full px-6 py-4 border-2 border-gray-200 focus:border-teal outline-none transition font-inter">
+                                <option>Select</option>
+                                <option>Will Attend</option>
+                                <option>Can't Attend</option>
+                                <option>Maybe</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-charcoal font-inter font-semibold mb-3 uppercase tracking-wider text-sm">Number of Guests</label>
+                            <input type="number" 
+                                   placeholder="How many?" 
+                                   class="w-full px-6 py-4 border-2 border-gray-200 focus:border-teal outline-none transition font-inter"
+                                   min="1">
+                        </div>
+                        <div>
+                            <label class="block text-charcoal font-inter font-semibold mb-3 uppercase tracking-wider text-sm">Message</label>
+                            <textarea placeholder="Your wishes..." 
+                                      rows="4" 
+                                      class="w-full px-6 py-4 border-2 border-gray-200 focus:border-teal outline-none transition resize-none font-inter"></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full bg-teal text-white px-8 py-5 font-inter font-bold hover:shadow-2xl transform hover:scale-105 transition duration-300 uppercase tracking-widest">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Confirmation
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-cream py-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-8">
+                <div class="flex justify-center gap-3 mb-8">
+                    <div class="w-1 h-16 bg-teal"></div>
+                    <div class="w-1 h-16 bg-cream"></div>
+                    <div class="w-1 h-16 bg-teal"></div>
+                </div>
+                
+                <h3 class="font-satisfy text-5xl text-teal mb-4">Reza & Intan</h3>
+                <p class="text-cream text-lg font-inter opacity-70">Thank You</p>
+                
+                <div class="w-24 h-0.5 bg-teal mx-auto my-8"></div>
+                
+                <p class="text-cream font-inter opacity-60">Thank you for celebrating with us</p>
+            </div>
+            
+            <div class="flex justify-center gap-4 mb-8">
+                <a href="#" class="w-12 h-12 border-2 border-teal text-teal flex items-center justify-center hover:bg-teal hover:text-white transition">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 border-2 border-teal text-teal flex items-center justify-center hover:bg-teal hover:text-white transition">
+                    <i class="fab fa-facebook text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 border-2 border-teal text-teal flex items-center justify-center hover:bg-teal hover:text-white transition">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+            </div>
+            
+            <p class="text-cream font-inter text-sm opacity-40">© 2024</p>
+        </div>
+    </footer>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="fixed inset-0 bg-charcoal bg-opacity-95 z-50 hidden items-center justify-center">
+        <button onclick="closeGallery()" class="absolute top-8 right-8 text-teal text-5xl hover:text-cream transition z-10">
+            <i class="fas fa-times"></i>
+        </button>
+        <button onclick="prevImage()" class="absolute left-8 text-teal text-5xl hover:text-cream transition">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button onclick="nextImage()" class="absolute right-8 text-teal text-5xl hover:text-cream transition">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <img id="modalImage" src="" alt="Gallery" class="max-w-[90%] max-h-[90%] object-contain">
+    </div>
+
+    <script>
+        // Opening Overlay
+        function openInvitation() {
+            document.getElementById('openingOverlay').classList.add('hidden');
+            document.getElementById('musicBtn').classList.remove('hidden');
+            playMusic();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Background Music
+        let isPlaying = false;
+        const music = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+
+        function playMusic() {
+            music.play();
+            isPlaying = true;
+            document.getElementById('musicBtn').classList.add('playing');
+            musicIcon.className = 'fas fa-music text-xl';
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                isPlaying = false;
+                document.getElementById('musicBtn').classList.remove('playing');
+                musicIcon.className = 'fas fa-volume-mute text-xl';
+            } else {
+                music.play();
+                isPlaying = true;
+                document.getElementById('musicBtn').classList.add('playing');
+                musicIcon.className = 'fas fa-music text-xl';
+            }
+        }
+
+        // Countdown Timer
+        const weddingDate = new Date('December 15, 2024 08:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Scroll Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal();
+
+        // Gallery Modal
+        const galleryImages = [
+            'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1530047625168-4b29bfbbe1fc?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800&h=800&fit=crop',
+            'https://images.unsplash.com/photo-1525258441167-d0d5e8f3c9f5?w=800&h=800&fit=crop'
+        ];
+
+        let currentImageIndex = 0;
+
+        function openGallery(index) {
+            currentImageIndex = index;
+            document.getElementById('modalImage').src = galleryImages[index];
+            document.getElementById('galleryModal').classList.remove('hidden');
+            document.getElementById('galleryModal').classList.add('flex');
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').classList.add('hidden');
+            document.getElementById('galleryModal').classList.remove('flex');
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            document.getElementById('modalImage').src = galleryImages[currentImageIndex];
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            document.getElementById('modalImage').src = galleryImages[currentImageIndex];
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeGallery();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            }
+        });
+
+        // Form Submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! Your confirmation has been received. 💚');
+            this.reset();
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
