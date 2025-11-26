@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan David & Tiara</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00b4d8;
+            --secondary-color: #90e0ef;
+            --accent-color: #caf0f8;
+            --text-color: #ffffff;
+            --bg-color: #03045e;
+            --card-bg: rgba(2, 62, 138, 0.8);
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--bg-color) 0%, #0077b6 50%, #00b4d8 100%);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--secondary-color), transparent);
+            opacity: 0.3;
+            animation: float-shapes 20s infinite linear;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 70%;
+            left: 80%;
+            animation-delay: -5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            left: 85%;
+            animation-delay: -10s;
+        }
+
+        .shape:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 15%;
+            animation-delay: -15s;
+        }
+
+        @keyframes float-shapes {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-20px) rotate(90deg);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-40px) rotate(180deg);
+                opacity: 0.7;
+            }
+            75% {
+                transform: translateY(-20px) rotate(270deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.3;
+            }
+        }
+
+        /* Particles Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(144, 224, 239, 0.8), transparent);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-100vh) translateX(50px) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Cover/Opening */
+        .cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #03045e 0%, #0077b6 50%, #00b4d8 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+        }
+
+        .cover.hidden {
+            transform: scale(0.8);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cover-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover h1 {
+            font-size: 5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            animation: slideInScale 1s ease-out;
+            text-shadow: 0 0 40px rgba(202, 240, 248, 0.6);
+        }
+
+        .cover .to {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .cover .guest-name {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 40px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .open-btn {
+            padding: 20px 60px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: #fff;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 180, 216, 0.5);
+            transition: all 0.3s ease;
+            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .open-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .open-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .open-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 50px rgba(0, 180, 216, 0.7);
+        }
+
+        /* Splash Screen */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .splash-screen.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .splash-icon {
+            font-size: 6rem;
+            animation: bounceIn 1s ease-out;
+        }
+
+        .splash-screen p {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-top: 20px;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, #023e8a 0%, #03045e 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(144, 224, 239, 0.03) 35px, rgba(144, 224, 239, 0.03) 70px);
+            animation: slidePattern 20s linear infinite;
+        }
+
+        @keyframes slidePattern {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(70px) translateY(70px); }
+        }
+
+        .ornament {
+            position: absolute;
+            border: 2px solid rgba(144, 224, 239, 0.2);
+            border-radius: 50%;
+            animation: rotate 30s linear infinite;
+        }
+
+        .ornament:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            animation-duration: 25s;
+        }
+
+        .ornament:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            animation-duration: 35s;
+            animation-direction: reverse;
+        }
+
+        .ornament:nth-child(3) {
+            width: 700px;
+            height: 700px;
+            animation-duration: 45s;
+            border-style: dashed;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            animation: fadeInScale 2s ease-in-out;
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: 10px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(144, 224, 239, 0.5);
+            animation: glow 2s ease-in-out infinite alternate, slideInDown 1s ease-out;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(144, 224, 239, 0.5); }
+            to { text-shadow: 0 0 40px rgba(144, 224, 239, 0.8); }
+        }
+
+        .hero .names {
+            font-size: 3.5rem;
+            margin: 30px 0;
+            font-weight: 600;
+            animation: fadeIn 1.5s ease-out 0.5s both;
+        }
+
+        .hero .date {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            letter-spacing: 3px;
+            animation: fadeIn 1.5s ease-out 1s both;
+        }
+
+        .divider {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            margin: 30px auto;
+            animation: expand 2s ease-in-out infinite;
+        }
+
+        @keyframes expand {
+            0%, 100% { width: 200px; opacity: 0.5; }
+            50% { width: 300px; opacity: 1; }
+        }
+
+        /* Music Control */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 30px rgba(0, 180, 216, 0.5);
+            transition: all 0.3s ease;
+            animation: float-button 3s ease-in-out infinite;
+        }
+
+        @keyframes float-button {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .music-control:hover {
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 8px 40px rgba(0, 180, 216, 0.7);
+        }
+
+        .music-control.playing::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: ripple 1.5s ease-out infinite;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .music-icon {
+            font-size: 1.8rem;
+            color: #fff;
+            animation: spin 3s linear infinite;
+        }
+
+        .music-control.paused .music-icon {
+            animation-play-state: paused;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        h2 {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            animation: slideInDown 1s ease-in-out;
+            text-shadow: 0 0 20px rgba(144, 224, 239, 0.3);
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Couple Section */
+        .couple-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+
+        .couple-card {
+            text-align: center;
+            padding: 40px;
+            background: var(--card-bg);
+            border: 2px solid rgba(144, 224, 239, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(144, 224, 239, 0.2);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .couple-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(144, 224, 239, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .couple-card:hover::before {
+            animation: shine 1.5s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .couple-card:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(144, 224, 239, 0.4);
+            border-color: var(--secondary-color);
+        }
+
+        .couple-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4rem;
+            border: 5px solid rgba(144, 224, 239, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        .couple-photo::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid var(--secondary-color);
+            animation: sonar 2s ease-out infinite;
+        }
+
+        @keyframes sonar {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .couple-card h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .couple-card p {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Countdown */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(144, 224, 239, 0.3);
+            min-width: 120px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-10px) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(144, 224, 239, 0.4);
+        }
+
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-shadow: 0 0 20px rgba(202, 240, 248, 0.5);
+            animation: numberPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes numberPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Carousel */
+        .carousel {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 550px;
+            background: linear-gradient(135deg, #023e8a 0%, #03045e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            color: var(--accent-color);
+            border: 3px solid rgba(144, 224, 239, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: slideLight 3s ease-in-out infinite;
+        }
+
+        @keyframes slideLight {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(144, 224, 239, 0.9);
+            color: #fff;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+        }
+
+        .carousel-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-50%) scale(1.3);
+            box-shadow: 0 10px 30px rgba(144, 224, 239, 0.5);
+        }
+
+        .carousel-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .carousel-btn.prev { left: 20px; }
+        .carousel-btn.next { right: 20px; }
+
+        .carousel-dots {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(144, 224, 239, 0.3);
+            margin: 0 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .dot:hover {
+            background: rgba(144, 224, 239, 0.6);
+            transform: scale(1.2);
+        }
+
+        .dot.active {
+            background: var(--secondary-color);
+            transform: scale(1.5);
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 20px rgba(144, 224, 239, 0.6);
+        }
+
+        /* New Photo Gallery Carousel */
+        .photo-gallery {
+            margin-top: 80px;
+        }
+
+        .photo-carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .photo-container {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .photo-item {
+            min-width: 100%;
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(3, 4, 94, 0.8), transparent);
+        }
+
+        .photo-caption {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+        }
+
+        .photo-item:hover .photo-caption {
+            transform: translateY(0);
+        }
+
+        .photo-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(144, 224, 239, 0.9);
+            color: #fff;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+        }
+
+        .photo-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-50%) scale(1.3);
+            box-shadow: 0 10px 30px rgba(144, 224, 239, 0.5);
+        }
+
+        .photo-btn.prev { left: 20px; }
+        .photo-btn.next { right: 20px; }
+
+        .photo-dots {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* New Timeline Carousel */
+        .timeline-carousel {
+            margin-top: 80px;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .timeline-slides {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-item {
+            min-width: 100%;
+            padding: 60px 40px;
+            background: var(--card-bg);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            animation: timeline-progress 8s linear infinite;
+        }
+
+        @keyframes timeline-progress {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .timeline-year {
+            font-size: 4rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(202, 240, 248, 0.5);
+        }
+
+        .timeline-event {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+        }
+
+        .timeline-desc {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .timeline-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(144, 224, 239, 0.9);
+            color: #fff;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+        }
+
+        .timeline-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-50%) scale(1.3);
+            box-shadow: 0 10px 30px rgba(144, 224, 239, 0.5);
+        }
+
+        .timeline-btn.prev { left: 20px; }
+        .timeline-btn.next { right: 20px; }
+
+        .timeline-dots {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Event Details */
+        .event-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .event-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(144, 224, 239, 0.3);
+            text-align: center;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(144, 224, 239, 0.1), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .event-card:hover::before {
+            left: 100%;
+        }
+
+        .event-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(144, 224, 239, 0.4);
+            border-color: var(--secondary-color);
+        }
+
+        .event-card h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            position: relative;
+            z-index: 1;
+        }
+
+        .event-card p {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* RSVP Button */
+        .rsvp-btn {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 25px 70px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.6rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rsvp-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .rsvp-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .rsvp-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 20px 50px rgba(0, 180, 216, 0.6);
+        }
+
+        .rsvp-btn:active {
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 80px 20px;
+            background: #03045e;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        footer p {
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Scroll Animation Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating Bubbles Animation */
+        .floating-bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-color), transparent);
+            opacity: 0;
+            animation: float-bubble 15s linear infinite;
+        }
+
+        @keyframes float-bubble {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            background-color: var(--accent-color);
+            opacity: 0;
+            animation: confetti-fall 5s linear forwards;
+            z-index: 1000;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .hero .names { font-size: 2rem; }
+            h2 { font-size: 2.5rem; }
+            .couple-card { padding: 20px; }
+            .carousel-item { height: 350px; font-size: 2rem; }
+            .photo-item { height: 300px; }
+            .timeline-item { padding: 40px 20px; }
+            .timeline-year { font-size: 3rem; }
+            .countdown { gap: 15px; }
+            .countdown-item { padding: 20px; min-width: 90px; }
+            .countdown-number { font-size: 2rem; }
+            .music-control { width: 50px; height: 50px; }
+            .music-icon { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+    </div>
+
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Floating Bubbles -->
+    <div class="floating-bubbles" id="floatingBubbles"></div>
+
+    <!-- Cover -->
+    <div class="cover" id="cover">
+        <div class="cover-content">
+            <h1>💙</h1>
+            <p class="to">Kepada Yth.</p>
+            <p class="guest-name">Bapak/Ibu/Saudara/i</p>
+            <button class="open-btn" onclick="openInvitation()">
+                <span style="position: relative; z-index: 1;">Buka Undangan</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splash">
+        <div class="splash-icon">💍</div>
+        <p>The Wedding Of</p>
+    </div>
+
+    <!-- Music Control -->
+    <div class="music-control playing" id="musicControl" onclick="toggleMusic()">
+        <div class="music-icon">🎵</div>
+    </div>
+
+    <!-- Audio -->
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_4a465d032d.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Hero Section -->
+    <div class="hero" id="hero" style="display: none;">
+        <div class="ornament"></div>
+        <div class="ornament"></div>
+        <div class="ornament"></div>
+        <div class="hero-content">
+            <h1>THE WEDDING</h1>
+            <div class="divider"></div>
+            <div class="names">David & Tiara</div>
+            <div class="divider"></div>
+            <div class="date">15 DESEMBER 2024</div>
+        </div>
+    </div>
+
+    <!-- Countdown Section -->
+    <section class="animate-on-scroll">
+        <h2>Hitung Mundur</h2>
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">0</div>
+                <div class="countdown-label">Hari</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">0</div>
+                <div class="countdown-label">Jam</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">0</div>
+                <div class="countdown-label">Menit</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">0</div>
+                <div class="countdown-label">Detik</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Couple Section -->
+    <section id="couple" class="animate-on-scroll">
+        <h2>Mempelai</h2>
+        <div class="couple-container">
+            <div class="couple-card">
+                <div class="couple-photo">🤵</div>
+                <h3>David Alexander, S.Kom</h3>
+                <p>Putra dari<br>Bapak Robert & Ibu Maria</p>
+            </div>
+            <div class="couple-card">
+                <div class="couple-photo">👰</div>
+                <h3>Tiara Anastasia, S.Psi</h3>
+                <p>Putri dari<br>Bapak Jonathan & Ibu Elizabeth</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Carousel -->
+    <section id="gallery" class="animate-on-scroll">
+        <h2>Galeri</h2>
+        <div class="carousel">
+            <div class="carousel-container" id="carouselContainer">
+                <div class="carousel-item">📸 Momen Pre-Wedding 1</div>
+                <div class="carousel-item">💑 Momen Pre-Wedding 2</div>
+                <div class="carousel-item">🌸 Momen Pre-Wedding 3</div>
+                <div class="carousel-item">💕 Momen Pre-Wedding 4</div>
+                <div class="carousel-item">🎊 Momen Pre-Wedding 5</div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+            <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+    </section>
+
+    <!-- New Photo Gallery Carousel -->
+    <section class="photo-gallery animate-on-scroll">
+        <h2>Momen Spesial</h2>
+        <div class="photo-carousel">
+            <div class="photo-container" id="photoContainer">
+                <div class="photo-item" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                    <div class="photo-caption">
+                        <h3>Pertemuan Pertama</h3>
+                        <p>Di mana semuanya dimulai</p>
+                    </div>
+                </div>
+                <div class="photo-item" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                    <div class="photo-caption">
+                        <h3>Liburan Bersama</h3>
+                        <p>Momen tak terlupakan di pantai</p>
+                    </div>
+                </div>
+                <div class="photo-item" style="background-image: url('https://images.unsplash.com/photo-1532712988311-7a8d4a3c89d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                    <div class="photo-caption">
+                        <h3>Lamaran</h3>
+                        <p>Momen spesial di taman bunga</p>
+                    </div>
+                </div>
+                <div class="photo-item" style="background-image: url('https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');">
+                    <div class="photo-caption">
+                        <h3>Pre-Wedding</h3>
+                        <p>Di bawah langit senja yang indah</p>
+                    </div>
+                </div>
+            </div>
+            <button class="photo-btn prev" onclick="movePhotoCarousel(-1)">❮</button>
+            <button class="photo-btn next" onclick="movePhotoCarousel(1)">❯</button>
+        </div>
+        <div class="photo-dots" id="photoDots"></div>
+    </section>
+
+    <!-- New Timeline Carousel -->
+    <section class="timeline-carousel animate-on-scroll">
+        <h2>Perjalanan Cinta Kami</h2>
+        <div class="timeline-container">
+            <div class="timeline-slides" id="timelineSlides">
+                <div class="timeline-item">
+                    <div class="timeline-year">2018</div>
+                    <div class="timeline-event">Pertemuan Pertama</div>
+                    <div class="timeline-desc">Kami bertemu di acara ulang tahun teman bersama. Saat itu kami tidak menyangka bahwa pertemuan ini akan mengubah hidup kami selamanya.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2019</div>
+                    <div class="timeline-event">Kencan Pertama</div>
+                    <div class="timeline-desc">Kencan pertama kami di kafe kecil dengan percakapan yang tak pernah habis hingga larut malam.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-event">Jadian</div>
+                    <div class="timeline-desc">Setahun lebih saling mengenal, kami memutuskan untuk resmi berpacaran di bawah langit berbintang.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2022</div>
+                    <div class="timeline-event">Lamaran</div>
+                    <div class="timeline-desc">Di tengah taman bunga yang indah, David melamar Tiara dengan cincin yang telah dipersiapkan dengan penuh cinta.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-event">Pernikahan</div>
+                    <div class="timeline-desc">Akhirnya, kami memutuskan untuk mengikat janji suci di hadapan Tuhan dan keluarga.</div>
+                </div>
+            </div>
+            <button class="timeline-btn prev" onclick="moveTimeline(-1)">❮</button>
+            <button class="timeline-btn next" onclick="moveTimeline(1)">❯</button>
+        </div>
+        <div class="timeline-dots" id="timelineDots"></div>
+    </section>
+
+    <!-- Event Details -->
+    <section id="event" class="animate-on-scroll">
+        <h2>Acara</h2>
+        <div class="event-details">
+            <div class="event-card">
+                <h3>Akad Nikah</h3>
+                <p>📅 Minggu, 15 Desember 2024</p>
+                <p>🕐 08:00 - 10:00 WIB</p>
+                <p>📍 Gereja Katedral Jakarta<br>Jl. Katedral No. 7B, Jakarta Pusat</p>
+            </div>
+            <div class="event-card">
+                <h3>Resepsi</h3>
+                <p>📅 Minggu, 15 Desember 2024</p>
+                <p>🕐 11:00 - 14:00 WIB</p>
+                <p>📍 Ballroom Hotel Grand Indonesia<br>Jl. MH Thamrin No. 1, Jakarta Pusat</p>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <a href="#" class="rsvp-btn" onclick="handleRSVP(event)">Konfirmasi Kehadiran</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="animate-on-scroll">
+        <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami<br>apabila Bapak/Ibu/Saudara/i berkenan hadir<br>untuk memberikan doa restu kepada kami.</p>
+        <div class="divider" style="margin-top: 30px;"></div>
+        <p style="margin-top: 30px; font-size: 1.5rem;">Wassalamualaikum Wr. Wb.</p>
+        <p style="margin-top: 20px; font-size: 1.8rem; color: var(--accent-color);">David & Tiara</p>
+    </footer>
+
+    <script>
+        // Particles Animation
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 5 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particles.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Floating Bubbles Animation
+        function createBubbles() {
+            const bubblesContainer = document.getElementById('floatingBubbles');
+            for (let i = 0; i < 20; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.animationDelay = Math.random() * 15 + 's';
+                bubble.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                bubble.style.width = (Math.random() * 20 + 10) + 'px';
+                bubble.style.height = bubble.style.width;
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+        createBubbles();
+
+        // Confetti Animation
+        function createConfetti() {
+            const colors = ['#00b4d8', '#90e0ef', '#caf0f8', '#ffffff'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // Open Invitation
+        function openInvitation() {
+            const cover = document.getElementById('cover');
+            const splash = document.getElementById('splash');
+            const hero = document.getElementById('hero');
+            const music = document.getElementById('bgMusic');
+            
+            cover.classList.add('hidden');
+            
+            setTimeout(() => {
+                splash.classList.add('show');
+                music.play().catch(e => console.log('Audio play failed:', e));
+                createConfetti();
+            }, 1000);
+            
+            setTimeout(() => {
+                splash.classList.remove('show');
+            }, 3000);
+            
+            setTimeout(() => {
+                hero.style.display = 'flex';
+                document.body.style.overflow = 'auto';
+            }, 4000);
+        }
+
+        // Music Control
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const control = document.getElementById('musicControl');
+            
+            if (music.paused) {
+                music.play();
+                control.classList.add('playing');
+                control.classList.remove('paused');
+            } else {
+                music.pause();
+                control.classList.remove('playing');
+                control.classList.add('paused');
+            }
+        }
+
+        // Countdown
+        function updateCountdown() {
+            const weddingDate = new Date('2024-12-15T08:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+
+            if (distance < 0) {
+                document.getElementById('days').innerText = '0';
+                document.getElementById('hours').innerText = '0';
+                document.getElementById('minutes').innerText = '0';
+                document.getElementById('seconds').innerText = '0';
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Carousel
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const totalSlides = slides.length;
+        
+        // Create dots
+        const dotsContainer = document.getElementById('carouselDots');
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('span');
+            dot.className = 'dot';
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        }
+        
+        function moveCarousel(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            updateCarousel();
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+        
+        function updateCarousel() {
+            const container = document.getElementById('carouselContainer');
+            container.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        // Auto slide
+        setInterval(() => {
+            moveCarousel(1);
+        }, 4000);
+
+        // Photo Carousel
+        let currentPhoto = 0;
+        const photos = document.querySelectorAll('.photo-item');
+        const totalPhotos = photos.length;
+        
+        // Create dots for photo carousel
+        const photoDotsContainer = document.getElementById('photoDots');
+        for (let i = 0; i < totalPhotos; i++) {
+            const dot = document.createElement('span');
+            dot.className = 'dot';
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goToPhoto(i);
+            photoDotsContainer.appendChild(dot);
+        }
+        
+        function movePhotoCarousel(direction) {
+            currentPhoto += direction;
+            if (currentPhoto < 0) currentPhoto = totalPhotos - 1;
+            if (currentPhoto >= totalPhotos) currentPhoto = 0;
+            updatePhotoCarousel();
+        }
+        
+        function goToPhoto(index) {
+            currentPhoto = index;
+            updatePhotoCarousel();
+        }
+        
+        function updatePhotoCarousel() {
+            const container = document.getElementById('photoContainer');
+            container.style.transform = `translateX(-${currentPhoto * 100}%)`;
+            
+            const dots = document.querySelectorAll('#photoDots .dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentPhoto);
+            });
+        }
+        
+        // Auto slide for photo carousel
+        setInterval(() => {
+            movePhotoCarousel(1);
+        }, 5000);
+
+        // Timeline Carousel
+        let currentTimeline = 0;
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const totalTimeline = timelineItems.length;
+        
+        // Create dots for timeline carousel
+        const timelineDotsContainer = document.getElementById('timelineDots');
+        for (let i = 0; i < totalTimeline; i++) {
+            const dot = document.createElement('span');
+            dot.className = 'dot';
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goToTimeline(i);
+            timelineDotsContainer.appendChild(dot);
+        }
+        
+        function moveTimeline(direction) {
+            currentTimeline += direction;
+            if (currentTimeline < 0) currentTimeline = totalTimeline - 1;
+            if (currentTimeline >= totalTimeline) currentTimeline = 0;
+            updateTimeline();
+        }
+        
+        function goToTimeline(index) {
+            currentTimeline = index;
+            updateTimeline();
+        }
+        
+        function updateTimeline() {
+            const container = document.getElementById('timelineSlides');
+            container.style.transform = `translateX(-${currentTimeline * 100}%)`;
+            
+            const dots = document.querySelectorAll('#timelineDots .dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentTimeline);
+            });
+        }
+        
+        // Auto slide for timeline carousel
+        setInterval(() => {
+            moveTimeline(1);
+        }, 6000);
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // RSVP Handler
+        function handleRSVP(e) {
+            e.preventDefault();
+            createConfetti();
+            alert('Terima kasih! Konfirmasi kehadiran Anda telah tercatat.');
+        }
+
+        // Prevent music autoplay issues
+        document.addEventListener('DOMContentLoaded', () => {
+            const music = document.getElementById('bgMusic');
+            music.volume = 0.3;
+        });
+
+        // Keyboard controls for carousels
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                moveCarousel(-1);
+                movePhotoCarousel(-1);
+                moveTimeline(-1);
+            }
+            if (e.key === 'ArrowRight') {
+                moveCarousel(1);
+                movePhotoCarousel(1);
+                moveTimeline(1);
+            }
+        });
+    </script>
+</body>
+</html>
