@@ -30,6 +30,65 @@
             transform: scale(1.05);
         }
 
+        /* Pagination Styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 3rem 0;
+            gap: 0.5rem;
+        }
+
+        .pagination-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #4A5568;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination-btn.active {
+            background: #9C7CEE;
+            color: white;
+            box-shadow: 0 4px 12px rgba(156, 124, 238, 0.3);
+        }
+
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .pagination-btn.disabled:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .pagination-ellipsis {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            color: #4A5568;
+            font-weight: 600;
+        }
+
         /* Responsive adjustments for images */
         @media (max-width: 1024px) {
             .design-image {
@@ -46,6 +105,16 @@
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
+            
+            .pagination-btn {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .pagination-ellipsis {
+                width: 36px;
+                height: 36px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -55,6 +124,23 @@
             
             .design-gallery {
                 padding: 0 1rem;
+            }
+            
+            .pagination {
+                flex-wrap: wrap;
+                gap: 0.3rem;
+            }
+            
+            .pagination-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+            
+            .pagination-ellipsis {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -145,106 +231,13 @@
                 <p class="section-subtitle">Pilih dari berbagai kategori desain yang sesuai dengan tema pernikahan Anda</p>
             </div>
             
-            <div class="design-gallery">
-                <div class="design-card">
-                    <div class="design-image">
-                        <img src="assets/images/wedding1.png" alt="Luminous Royal Wedding Design">
-                    </div>
-                    <div class="design-content">
-                        <div class="design-category">Golden Noir Elegance</div>
-                        <div class="design-title">Luminous Royal Wedding</div>
-                        <p class="design-description">
-                            Desain undangan premium dengan nuansa hitam–emas, efek cahaya lembut,
-                            dan partikel mewah yang memberikan kesan elegan, futuristik, serta berkelas.
-                            Cocok untuk konsep pernikahan modern berestetika luxury.
-                        </p>
-                        <a href="website/index1.html" class="design-button">Lihat Demo</a>
-                    </div>
-                </div>
-
-                <div class="design-card">
-                    <div class="design-image">
-                        <img src="assets/images/wedding2.png" alt="Golden Embrace Design">
-                    </div>
-                    <div class="design-content">
-                        <div class="design-category">Luxury Classic</div>
-                        <div class="design-title">Golden Embrace</div>
-                        <p class="design-description">Desain mewah dengan nuansa emas elegan, animasi partikel berkilau, dan sentuhan klasik yang timeless untuk pernikahan impian Anda.</p>
-                        <a href="website/index2.html" class="design-button">Lihat Demo</a>
-                    </div>
-                </div>
-
-                <div class="design-card">
-                    <div class="design-image">
-                        <img src="assets/images/wedding3.png" alt="Monochrome Elegance Design">
-                    </div>
-                    <div class="design-content">
-                        <div class="design-category">Modern Minimalist</div>
-                        <div class="design-title">Monochrome Elegance</div>
-                        <p class="design-description">Desain hitam-putih yang sophisticated dengan animasi scroll halus, typography elegan, dan efek parallax yang memukau.</p>
-                        <a href="website/index3.html" class="design-button">Lihat Demo</a>
-                    </div>
-                </div>
-
-                <div class="design-card">
-                    <div class="design-image">
-                        <img src="assets/images/wedding4.png" alt="Sundanese Heritage Design">
-                    </div>
-                    <div class="design-content">
-                        <div class="design-category">Traditional Sundanese</div>
-                        <div class="design-title">Sundanese Heritage</div>
-                        <p class="design-description">Desain pernikahan adat Sunda dengan ornamen wayang, aksara Sunda, dan warna tradisional yang kaya makna budaya.</p>
-                        <a href="website/index4.html" class="design-button">Lihat Demo</a>
-                    </div>
-                </div>
-
-                <div class="design-card">
-                    <div class="design-image">
-                        <img src="assets/images/wedding5.png" alt="Modern Minimalist Design">
-                    </div>
-                    <div class="design-content">
-                        <div class="design-category">Modern Minimalist</div>
-                        <div class="design-title">Azure Harmony</div>
-                        <p class="design-description">Desain minimalis dengan palet warna navy-pink yang elegan, layout split-screen modern, dan tipografi clean yang sophisticated.</p>
-                        <a href="website/index5.html" class="design-button">Lihat Demo</a>
-                    </div>
-                </div>
-
-                <div class="design-card">
-                    <div class="design-image">
-                        <img src="assets/images/wedding6.png" alt="Modern Magazine Design">
-                    </div>
-                    <div class="design-content">
-                        <div class="design-category">Modern Editorial</div>
-                        <div class="design-title">Teal Editorial</div>
-                        <p class="design-description">Desain magazine modern dengan layout asimetris, palet warna teal-cream yang sophisticated, dan elemen editorial yang stylish.</p>
-                        <a href="website/index6.html" class="design-button">Lihat Demo</a>
-                    </div>
-                </div>
-
-                <div class="design-card">
-                    <div class="design-image">
-                        <img src="assets/images/wedding7.png" alt="Luxury Emerald Design">
-                    </div>
-                    <div class="design-content">
-                        <div class="design-category">Luxury Premium</div>
-                        <div class="design-title">Emerald Elegance</div>
-                        <p class="design-description">Desain premium mewah dengan palet warna emerald-gold, elemen diamond shape yang eksklusif, dan layout luxury yang sophisticated.</p>
-                        <a href="website/index7.html" class="design-button">Lihat Demo</a>
-                    </div>
-                </div>
-
-                <div class="design-card">
-                    <div class="design-image">
-                        <img src="assets/images/wedding8.png" alt="Artistic Wave Design">
-                    </div>
-                    <div class="design-content">
-                        <div class="design-category">Artistic Modern</div>
-                        <div class="design-title">Lavender Wave</div>
-                        <p class="design-description">Desain artistic dengan bentuk wave yang dinamis, elemen circular dan hexagon yang unik, serta palet warna lavender yang soft dan elegant.</p>
-                        <a href="website/index8.html" class="design-button">Lihat Demo</a>
-                    </div>
-                </div>
+            <div class="design-gallery" id="designGallery">
+                <!-- Desain akan ditampilkan di sini melalui JavaScript -->
+            </div>
+            
+            <!-- Pagination Controls -->
+            <div class="pagination" id="pagination">
+                <!-- Pagination akan di-generate melalui JavaScript -->
             </div>
         </section>
     </main>
@@ -296,5 +289,229 @@
     </footer>
 
     <script src="assets/js/script.js"></script>
+    <script>
+        // Data desain
+        const designs = [
+            {
+                id: 1,
+                image: "assets/images/wedding1.png",
+                alt: "Luminous Royal Wedding Design",
+                category: "Golden Noir Elegance",
+                title: "Luminous Royal Wedding",
+                description: "Desain undangan premium dengan nuansa hitam–emas, efek cahaya lembut, dan partikel mewah yang memberikan kesan elegan, futuristik, serta berkelas. Cocok untuk konsep pernikahan modern berestetika luxury.",
+                demoLink: "website/index1.html"
+            },
+            {
+                id: 2,
+                image: "assets/images/wedding2.png",
+                alt: "Golden Embrace Design",
+                category: "Luxury Classic",
+                title: "Golden Embrace",
+                description: "Desain mewah dengan nuansa emas elegan, animasi partikel berkilau, dan sentuhan klasik yang timeless untuk pernikahan impian Anda.",
+                demoLink: "website/index2.html"
+            },
+            {
+                id: 3,
+                image: "assets/images/wedding3.png",
+                alt: "Monochrome Elegance Design",
+                category: "Modern Minimalist",
+                title: "Monochrome Elegance",
+                description: "Desain hitam-putih yang sophisticated dengan animasi scroll halus, typography elegan, dan efek parallax yang memukau.",
+                demoLink: "website/index3.html"
+            },
+            {
+                id: 4,
+                image: "assets/images/wedding4.png",
+                alt: "Sundanese Heritage Design",
+                category: "Traditional Sundanese",
+                title: "Sundanese Heritage",
+                description: "Desain pernikahan adat Sunda dengan ornamen wayang, aksara Sunda, dan warna tradisional yang kaya makna budaya.",
+                demoLink: "website/index4.html"
+            },
+            {
+                id: 5,
+                image: "assets/images/wedding5.png",
+                alt: "Modern Minimalist Design",
+                category: "Modern Minimalist",
+                title: "Azure Harmony",
+                description: "Desain minimalis dengan palet warna navy-pink yang elegan, layout split-screen modern, dan tipografi clean yang sophisticated.",
+                demoLink: "website/index5.html"
+            },
+            {
+                id: 6,
+                image: "assets/images/wedding6.png",
+                alt: "Modern Magazine Design",
+                category: "Modern Editorial",
+                title: "Teal Editorial",
+                description: "Desain magazine modern dengan layout asimetris, palet warna teal-cream yang sophisticated, dan elemen editorial yang stylish.",
+                demoLink: "website/index6.html"
+            },
+            {
+                id: 7,
+                image: "assets/images/wedding7.png",
+                alt: "Luxury Emerald Design",
+                category: "Luxury Premium",
+                title: "Emerald Elegance",
+                description: "Desain premium mewah dengan palet warna emerald-gold, elemen diamond shape yang eksklusif, dan layout luxury yang sophisticated.",
+                demoLink: "website/index7.html"
+            },
+            {
+                id: 8,
+                image: "assets/images/wedding8.png",
+                alt: "Artistic Wave Design",
+                category: "Artistic Modern",
+                title: "Lavender Wave",
+                description: "Desain artistic dengan bentuk wave yang dinamis, elemen circular dan hexagon yang unik, serta palet warna lavender yang soft dan elegant.",
+                demoLink: "website/index8.html"
+            },
+            {
+                id: 9,
+                image: "assets/images/wedding9.png",
+                alt: "Artistic Wave Design",
+                category: "Elegant Blue Theme",
+                title: "Celestial Harmony",
+                description: "Desain elegan bertema langit malam dengan gradasi biru gelap, ornamen bercahaya, dan tipografi mewah yang menghadirkan suasana romantis dan modern.",
+                demoLink: "website/index9.html"
+            },
+            {
+                id: 10,
+                image: "assets/images/wedding10.png",
+                alt: "Elegant Pastel Theme",
+                category: "Elegant Pastel Theme",
+                title: "Romantic Soft Elegance",
+                description: "Desain undangan bernuansa pastel lembut dengan tipografi elegan, animasi halus, dan estetika modern yang memberikan kesan romantis, hangat, dan premium.",
+                demoLink: "website/index10.html"
+            }
+        ];
+
+        // Konfigurasi pagination
+        const itemsPerPage = 6;
+        let currentPage = 1;
+
+        // Fungsi untuk menampilkan desain berdasarkan halaman
+        function displayDesigns(page) {
+            const gallery = document.getElementById('designGallery');
+            gallery.innerHTML = '';
+            
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const designsToShow = designs.slice(startIndex, endIndex);
+            
+            designsToShow.forEach(design => {
+                const designCard = document.createElement('div');
+                designCard.className = 'design-card';
+                designCard.innerHTML = `
+                    <div class="design-image">
+                        <img src="${design.image}" alt="${design.alt}">
+                    </div>
+                    <div class="design-content">
+                        <div class="design-category">${design.category}</div>
+                        <div class="design-title">${design.title}</div>
+                        <p class="design-description">${design.description}</p>
+                        <a href="${design.demoLink}" class="design-button">Lihat Demo</a>
+                    </div>
+                `;
+                gallery.appendChild(designCard);
+            });
+        }
+
+        // Fungsi untuk membuat pagination
+        function createPagination() {
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
+            
+            const totalPages = Math.ceil(designs.length / itemsPerPage);
+            
+            // Tombol Previous
+            const prevButton = document.createElement('button');
+            prevButton.className = `pagination-btn ${currentPage === 1 ? 'disabled' : ''}`;
+            prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayDesigns(currentPage);
+                    createPagination();
+                    window.scrollTo({ top: document.querySelector('.features').offsetTop - 100, behavior: 'smooth' });
+                }
+            });
+            paginationContainer.appendChild(prevButton);
+            
+            // Halaman pertama
+            if (currentPage > 3) {
+                const firstPageButton = document.createElement('button');
+                firstPageButton.className = 'pagination-btn';
+                firstPageButton.textContent = '1';
+                firstPageButton.addEventListener('click', () => {
+                    currentPage = 1;
+                    displayDesigns(currentPage);
+                    createPagination();
+                    window.scrollTo({ top: document.querySelector('.features').offsetTop - 100, behavior: 'smooth' });
+                });
+                paginationContainer.appendChild(firstPageButton);
+                
+                if (currentPage > 4) {
+                    const ellipsis = document.createElement('div');
+                    ellipsis.className = 'pagination-ellipsis';
+                    ellipsis.textContent = '...';
+                    paginationContainer.appendChild(ellipsis);
+                }
+            }
+            
+            // Halaman di sekitar halaman aktif
+            for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) {
+                const pageButton = document.createElement('button');
+                pageButton.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+                pageButton.textContent = i;
+                pageButton.addEventListener('click', () => {
+                    currentPage = i;
+                    displayDesigns(currentPage);
+                    createPagination();
+                    window.scrollTo({ top: document.querySelector('.features').offsetTop - 100, behavior: 'smooth' });
+                });
+                paginationContainer.appendChild(pageButton);
+            }
+            
+            // Halaman terakhir
+            if (currentPage < totalPages - 2) {
+                if (currentPage < totalPages - 3) {
+                    const ellipsis = document.createElement('div');
+                    ellipsis.className = 'pagination-ellipsis';
+                    ellipsis.textContent = '...';
+                    paginationContainer.appendChild(ellipsis);
+                }
+                
+                const lastPageButton = document.createElement('button');
+                lastPageButton.className = 'pagination-btn';
+                lastPageButton.textContent = totalPages;
+                lastPageButton.addEventListener('click', () => {
+                    currentPage = totalPages;
+                    displayDesigns(currentPage);
+                    createPagination();
+                    window.scrollTo({ top: document.querySelector('.features').offsetTop - 100, behavior: 'smooth' });
+                });
+                paginationContainer.appendChild(lastPageButton);
+            }
+            
+            // Tombol Next
+            const nextButton = document.createElement('button');
+            nextButton.className = `pagination-btn ${currentPage === totalPages ? 'disabled' : ''}`;
+            nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayDesigns(currentPage);
+                    createPagination();
+                    window.scrollTo({ top: document.querySelector('.features').offsetTop - 100, behavior: 'smooth' });
+                }
+            });
+            paginationContainer.appendChild(nextButton);
+        }
+
+        // Inisialisasi halaman
+        document.addEventListener('DOMContentLoaded', () => {
+            displayDesigns(currentPage);
+            createPagination();
+        });
+    </script>
 </body>
 </html>
